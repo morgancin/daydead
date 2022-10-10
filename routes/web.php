@@ -1,8 +1,12 @@
 <?php
 
+use Illuminate\Support\Facades\Http;
+
+
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QrController;
 use App\Http\Controllers\LeadController;
+use App\Http\Controllers\UserController;
 use App\Http\Controllers\PlaceController;
 
 /*
@@ -18,11 +22,27 @@ use App\Http\Controllers\PlaceController;
 
 Route::get('/', function () {
     return view('welcome');
+    /*
+    $response = Http::post('https://api.leader.sale/prospect/add-lead-lp', [
+        'Name' => "Carmen Martínez",
+        'Email' => "email@correo.com",
+        'Phone' => "",
+        'UserId' => 13,
+        'PlaceId' => 89,
+    ]);
+
+    dd($response['body']['ProspectId']);
+    */
 });
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
+
+Route::get('users', [UserController::class, 'index'])->name('users');
+Route::get('users/register', [UserController::class, 'create'])->name('users.register');
+Route::post('users/register', [UserController::class, 'store'])->name('users.store');
 
 Route::get('leads/register', [LeadController::class, 'create'])->name('leads.register');
 Route::post('leads/register', [LeadController::class, 'store'])->name('leads.register.store');

@@ -11,12 +11,13 @@
                 </div>
 
                 <!-- Navigation Links -->
-
+                <!--
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
                     </x-nav-link>
                 </div>
+                -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                     <x-nav-link :href="route('users.register')" :active="request()->routeIs('users.register')">
@@ -31,8 +32,14 @@
                 </div>
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('places.register')" :active="request()->routeIs('places.register')">
+                    <x-nav-link :href="route('leads.register')" :active="request()->routeIs('leads.register')">
                         {{ __('Seguimientos') }}
+                    </x-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('qrs.register')" :active="request()->routeIs('qrs.register')">
+                        {{ __('Qrs') }}
                     </x-nav-link>
                 </div>
             </div>

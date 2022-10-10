@@ -35,7 +35,7 @@ class LeadController extends Controller
         try	{
             //@var \App\Models\Lead
             Lead::create([
-                'qr_id' => 1,
+                'qr_id' => 2,
                 'time_capture' => '00:00',
                 'name' => $request->name,
                 'phone' => $request->phone,

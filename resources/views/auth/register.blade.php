@@ -6,7 +6,7 @@
             </a>
         </x-slot>
 
-        <form method="POST" action="{{ route('register') }}" novalidate>
+        <form method="POST" action="{{ route('users.store') }}" novalidate>
             @csrf
 
             <!-- Name -->

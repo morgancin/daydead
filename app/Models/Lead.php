@@ -4,6 +4,7 @@ namespace App\Models;
 
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Lead extends Model
 {
@@ -20,4 +21,10 @@ class Lead extends Model
         'qr_id',
         'time_capture',
     ];
+
+    ////////////RELATION SHIP
+    public function qr(): BelongsTo
+    {
+        return $this->belongsTo(Qr::class, 'qr_id', 'id');
+    }
 }

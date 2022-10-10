@@ -1,18 +1,40 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+//use App\Http\Controllers\Controller;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
+use Illuminate\Validation\Rules;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rules;
+use Illuminate\Auth\Events\Registered;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Contracts\Support\Renderable;
 
-class RegisteredUserController extends Controller
+class UserController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     */
+    public function index(): Renderable
+    {
+        /*
+        $oCategorias = Categoria::get();
+        $cSearch = request('Subcategoria_txtSearch');
+        $nIdCategoria_search = request('Subcategoria_cmbSearch');
+
+		$oSubcategorias = Subcategoria::with('categoria')
+                                    ->searchlistado(request('Subcategoria_txtSearch'))
+                                    ->searchcategoria(request('Subcategoria_cmbSearch'))
+                                    ->paginate();
+
+		return view('administrador.subcategorias.listado', compact('oSubcategorias', 'oCategorias', 'cSearch', 'nIdCategoria_search'));
+        */
+        return view('users.index');
+    }
+
     /**
      * Display the registration view.
      *
@@ -20,7 +42,7 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        return view('users.form');
     }
 
     /**
@@ -56,8 +78,8 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        Auth::login($user);
+        //Auth::login($user);
 
-        return redirect(RouteServiceProvider::HOME);
+        //return redirect(RouteServiceProvider::HOME);
     }
 }

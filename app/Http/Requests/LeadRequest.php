@@ -25,7 +25,7 @@ class LeadRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string', 'max:50'],
-            'phone' => ['required', 'max:30'],
+            'phone' => ['required', 'min:10', 'max:10'],
             'email' => ['required', 'string', 'email', 'max:30'],
         ];
     }
