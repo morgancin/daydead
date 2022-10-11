@@ -16,14 +16,20 @@
                             </a>
                         </x-slot>
 
-                        <form method="POST" action="{{ route('places.register.store') }}" novalidate>
+                        <form method="POST" action="{{ ! $oPlace->id ? route('places.register.store') : route('places.update')}}" novalidate>
                             @csrf
+
+                            @if($oPlace->id)
+                                @method('PUT')
+
+                                <input type="hidden" name="hidPlace" id="hidPlace" value="{{ $oPlace->id }}" />
+                            @endif
 
                             <!-- Name -->
                             <div>
                                 <x-input-label for="name" :value="__('Nombre')" />
 
-                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus />
+                                <x-text-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name', $oPlace->name)" required autofocus />
 
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
@@ -32,7 +38,7 @@
                             <div>
                                 <x-input-label for="code" :value="__('Clave')" />
 
-                                <x-text-input type="text" name="code" id="code" class="block mt-1 w-full" :value="old('code')" required autofocus />
+                                <x-text-input type="text" name="code" id="code" class="block mt-1 w-full" :value="old('code', $oPlace->code)" required autofocus />
 
                                 <x-input-error :messages="$errors->get('code')" class="mt-2" />
                             </div>

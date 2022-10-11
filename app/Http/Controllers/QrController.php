@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Qr;
+use App\Models\User;
 use App\Models\Place;
 use Illuminate\Http\Request;
 use App\Http\Requests\QrRequest;
@@ -18,8 +19,10 @@ class QrController extends Controller
     public function create()
     {
         $oQr = new Qr;
+        $oUsers = User::get();
         $oPlaces = Place::get();
-		return view('qrs.form', compact('oQr', 'oPlaces'));
+
+		return view('qrs.form', compact('oQr', 'oUsers', 'oPlaces'));
     }
 
     /**
@@ -38,10 +41,11 @@ class QrController extends Controller
         try	{
             //@var \App\Models\Qr
             Qr::create([
-                'place_id' => $request->place_id,
-                'businessline' => $request->businessline,
                 'src' => 'example',
                 'hash' => 'example',
+                'place_id' => $request->place_id,
+                'businessline' => $request->businessline,
+                'user_id' => (auth()->user()->role == 'admin') ? $request->user_id : auth()->user()->id,
             ]);
 
         } catch (\Exception $e) {

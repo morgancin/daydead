@@ -19,6 +19,23 @@
                         <form method="POST" action="{{ route('qrs.register.store') }}" novalidate>
                             @csrf
 
+                            <!-- User -->
+                            <div>
+                                <x-input-label for="user_id" :value="__('Usuario')" />
+
+                                <select
+                                    id="user_id"
+                                    name="user_id"
+                                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
+                                        <option>-- Seleccione --</option>
+                                        @foreach($oUsers as $user)
+                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                        @endforeach
+                                </select>
+
+                                <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
+                            </div>
+
                             <!-- Place -->
                             <div>
                                 <x-input-label for="place_id" :value="__('Lugar')" />
@@ -27,9 +44,10 @@
                                     id="place_id"
                                     name="place_id"
                                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-                                        <option value=""></option>
-                                        <option value=""></option>
-                                        <option value=""></option>
+                                        <option>-- Seleccione --</option>
+                                        @foreach($oPlaces as $place)
+                                            <option value="{{ $place->id }}">{{ $place->name }}</option>
+                                        @endforeach
                                 </select>
 
                                 <x-input-error :messages="$errors->get('place_id')" class="mt-2" />
@@ -43,6 +61,7 @@
                                     id="businessline"
                                     name="businessline"
                                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
+                                        <option>-- Seleccione --</option>
                                         <option value="PF">PREVENCIÓN FINAL</option>
                                         <option value="SG">SANTA GLORIA</option>
                                         <option value="BF">BYE BYE FRIEND</option>

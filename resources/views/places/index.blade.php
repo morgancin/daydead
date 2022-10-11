@@ -40,16 +40,16 @@
 
                         <div date-rangepicker class="flex items-center place-content-end">
                             <!-- Busqueda por nombre y lugar -->
-                            <div class="">
+                            <div>
                                 <div class=" container-1 p-3">
-                                    <input class=" border
-                                               rounded-lg
-                                               border-purple-900
-                                               sm:text-sm
-                                               pl-10 p-2.5 w-90"
-                                            type="search" id="nombre" placeholder="Buscar Nombre" />
+                                    <input type="text" class="border
+                                                                rounded-lg
+                                                                border-purple-900
+                                                                sm:text-sm
+                                                                pl-10 p-2.5 w-90"
+                                            name="txtSearch" placeholder="Buscar por clave o lugar" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
 
-                                    <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-1">Buscar</button>
+                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-1">Buscar</button>
                                 </div>
                             </div>
                         </div>
