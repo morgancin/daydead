@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
+use App\Models\Qr;
 use App\Models\Lead;
-use App\Http\Requests\LeadRequest;
 
+use App\Http\Requests\LeadRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -18,7 +19,9 @@ class LeadController extends Controller
     {
         $cSearch = request('txtSearch');
 
-        $oLeads = Lead::with('qr')
+        $oLeads = Lead::with(['qr' => function($q){
+                            $q->with('user', 'place');
+                        }])
                         ->orderBy('created_at', 'DESC')
                         //->searchlist($cSearch)
                         ->paginate();
@@ -31,9 +34,25 @@ class LeadController extends Controller
      *
      * @return \Illuminate\View\View
      */
-    public function create()
+    public function create($cHash = false)
     {
-        return view('website.register');
+        if($cHash)
+        {
+            $oQr = Qr::where('hash', $cHash)->first();
+
+            if($oQr)
+            {
+                return view('website.register', compact('cHash'));
+
+            }else
+            {
+                abort(404);
+            }
+
+        }else
+        {
+            abort(404);
+        }
     }
 
     /**
@@ -50,13 +69,21 @@ class LeadController extends Controller
 
         try	{
             //@var \App\Models\Lead
-            Lead::create([
-                'qr_id' => 2,
-                'time_capture' => '00:00',
-                'name' => $request->name,
-                'phone' => $request->phone,
-                'email' => $request->email,
-            ]);
+            $oQr = Qr::where('hash', $request->hidHash)->first();
+
+            if($oQr)
+            {
+                $oLead = Lead::create([
+                    'qr_id' => $oQr->id,
+                    'name' => $request->name,
+                    'phone' => $request->phone,
+                    'email' => $request->email,
+                    'time_capture' => '00:00',
+                ]);
+            }else
+            {
+                return back()->with(['success' => FALSE, 'message' => 'Hash inválido']);
+            }
 
         } catch (\Exception $e) {
             DB::rollBack();
@@ -68,7 +95,7 @@ class LeadController extends Controller
             DB::commit();
             //event(new Registered($user));
 
-            return view('website.message');
+            return view('website.message', compact('oLead'));
         }
 
         //event(new Registered($user));

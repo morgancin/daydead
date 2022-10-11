@@ -22,7 +22,7 @@ class Lead extends Model
         'time_capture',
     ];
 
-    ////////////RELATION SHIP
+    ////////////RELATIONSHIPS
     public function qr(): BelongsTo
     {
         return $this->belongsTo(Qr::class, 'qr_id', 'id');

@@ -59,7 +59,7 @@ Route::group(['prefix' => "leads"], function()
         Route::post('/register', 'store')->name('leads.store');
         Route::get('/update/{user}', 'edit')->name('leads.edit');
         Route::delete('/delete', 'destroy')->name('leads.delete');
-        Route::get('/register/{hash}', 'create')->name('leads.register');
+        Route::get('/register/{hash?}', 'create')->name('leads.register');
     });
 });
 

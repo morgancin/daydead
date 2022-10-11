@@ -17,6 +17,7 @@
             <h2 class="text-white text-center">Consultor : </h2>
                 <form method="POST" action="{{ route('leads.store') }}" novalidate>
                     @csrf
+                    <input type="hidden" name="hidHash" value="{{ $cHash }}" />
 
                     <div class="rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
                         <div class="-mx-3 md:flex mb-6 justify-center items-center">

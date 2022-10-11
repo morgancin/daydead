@@ -4,9 +4,10 @@ namespace App\Models;
 
 //use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Qr extends Model
 {
@@ -26,13 +27,11 @@ class Qr extends Model
         'businessline',
     ];
 
-    ////////////RELATION SHIP
-    /*
-    public function lead(): HasOne
+    ////////////RELATIONSHIPS
+    public function leads(): HasMany
     {
-        return $this->hasOne(Lead::class, 'qr_id', 'id');
+        return $this->hasMany(Lead::class, 'qr_id', 'id');
     }
-    */
 
     public function user(): BelongsTo
     {
