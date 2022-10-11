@@ -6,9 +6,22 @@ use App\Models\Place;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\PlaceRequest;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Contracts\Support\Renderable;
 
 class PlaceController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     *
+     */
+    public function index(): Renderable
+    {
+        $oPlaces = Place::paginate();
+
+        return view('places.index', compact('oPlaces'));
+    }
+
     /**
      * Display the registration view.
      *
@@ -42,12 +55,46 @@ class PlaceController extends Controller
         } catch (\Exception $e) {
             DB::rollBack();
             $success = false;
-            echo $e->getMessage();
+            $message = $e->getMessage();
         }
 
         if ($success === true) {
             DB::commit();
-            //return view('website.message');
+            $message =  'Registro insertado correctamente';
+        }
+
+        return back()->with(['success' => $success, 'message' => $message]);
+    }
+
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(Request $request)
+    {
+        $request->validate([
+                    'hidPlace' => 'required'
+                ],
+                [
+                    'hidPlace.required' => 'Se requiere seleccionar registro.'
+                ]
+            );
+
+        $success = true;
+        DB::beginTransaction();
+
+        try {
+            $oPlace = Place::findOrFail($request->input("hidPlace"));
+
+            $oPlace->delete();
+
+        } catch (\Exception $exception) {
+            DB::rollBack();
+            return back()->with(['success' => FALSE, 'message' => $exception->getMessage()]);
+        }
+
+        if ($success === true) {
+            DB::commit();
+            return back()->with(['success' => TRUE, 'message' => "Registro eliminado correctamente"]);
         }
     }
 }

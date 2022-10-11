@@ -41,6 +41,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::get('users', [UserController::class, 'index'])->name('users');
+Route::post('users', [UserController::class, 'index'])->name('users.post');
 Route::get('users/register', [UserController::class, 'create'])->name('users.register');
 Route::post('users/register', [UserController::class, 'store'])->name('users.store');
 
@@ -50,7 +51,23 @@ Route::post('leads/register', [LeadController::class, 'store'])->name('leads.reg
 Route::get('qrs/register', [QrController::class, 'create'])->name('qrs.register');
 Route::post('qrs/register', [QrController::class, 'store'])->name('qrs.register.store');
 
-Route::get('places/register', [PlaceController::class, 'create'])->name('places.register');
-Route::post('places/register', [PlaceController::class, 'store'])->name('places.register.store');
+//Route::get('places', [PlaceController::class, 'index'])->name('places');
+//Route::post('places', [PlaceController::class, 'index'])->name('places.post');
+//Route::get('places/register', [PlaceController::class, 'create'])->name('places.register');
+//Route::post('places/register', [PlaceController::class, 'store'])->name('places.register.store');
+
+Route::group(['prefix' => "places"], function()
+{
+    Route::controller(PlaceController::class)->group(function ()
+    {
+        Route::get('/', 'index')->name('places');
+        Route::post('/', 'index')->name('places.post');
+        Route::put('/update', 'update')->name('places.update');
+        Route::get('/update/{place}', 'edit')->name('places.edit');
+        Route::delete('/delete', 'destroy')->name('places.delete');
+        Route::get('/register', 'create')->name('places.register');
+        Route::post('/register', 'store')->name('places.register.store');
+    });
+});
 
 require __DIR__.'/auth.php';

@@ -32,7 +32,11 @@ class UserController extends Controller
 
 		return view('administrador.subcategorias.listado', compact('oSubcategorias', 'oCategorias', 'cSearch', 'nIdCategoria_search'));
         */
-        return view('users.index');
+
+        $oUsers = User::with('qrs')
+                    ->paginate();
+
+        return view('users.index', compact('oUsers'));
     }
 
     /**
