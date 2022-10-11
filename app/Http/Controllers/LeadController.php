@@ -3,13 +3,29 @@
 namespace App\Http\Controllers;
 
 //use Illuminate\Http\Request;
-use App\Http\Requests\LeadRequest;
-use Illuminate\Support\Facades\DB;
-
 use App\Models\Lead;
+use App\Http\Requests\LeadRequest;
+
+use Illuminate\Support\Facades\DB;
+use Illuminate\Contracts\Support\Renderable;
 
 class LeadController extends Controller
 {
+    /**
+     * Display a listing of the resource.
+     */
+    public function index(): Renderable
+    {
+        $cSearch = request('txtSearch');
+
+        $oLeads = Lead::with('qr')
+                        ->orderBy('created_at', 'DESC')
+                        //->searchlist($cSearch)
+                        ->paginate();
+
+        return view('leads.index', compact('oLeads', 'cSearch'));
+    }
+
     /**
      * Display the registration view.
      *

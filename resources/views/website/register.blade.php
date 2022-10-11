@@ -15,7 +15,7 @@
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/derecho.png') }}" alt="">
           </div>
             <h2 class="text-white text-center">Consultor : </h2>
-                <form method="POST" action="{{ route('leads.register.store') }}" novalidate>
+                <form method="POST" action="{{ route('leads.store') }}" novalidate>
                     @csrf
 
                     <div class="rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
