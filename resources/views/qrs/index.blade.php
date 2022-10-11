@@ -84,7 +84,7 @@
                                             <tr class="border-b">
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->user->name }}</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->place->name }}</td>
-                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->place->name }}</td>
+                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->businessline }}</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <a href="#" onClick="event.preventDefault(); document.getElementById('hidQr').value = '{{ $qr->id }}'; document.getElementById('frmDelete').submit();" class="btn btn-default btn-sm float-left">Eliminar</a>
                                                     |

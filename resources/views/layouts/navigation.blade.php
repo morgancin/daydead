@@ -20,7 +20,7 @@
                 -->
 
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                    <x-nav-link :href="route('users.register')" :active="request()->routeIs('users.register')">
+                    <x-nav-link :href="route('users')" :active="request()->routeIs('users')">
                         {{ __('Usuarios') }}
                     </x-nav-link>
                 </div>

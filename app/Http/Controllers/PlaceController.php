@@ -125,14 +125,6 @@ class PlaceController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->validate([
-                    'hidPlace' => 'required'
-                ],
-                [
-                    'hidPlace.required' => 'Se requiere seleccionar registro.'
-                ]
-            );
-
         $success = true;
         DB::beginTransaction();
 

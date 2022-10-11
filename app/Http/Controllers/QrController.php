@@ -5,10 +5,12 @@ namespace App\Http\Controllers;
 use App\Models\Qr;
 use App\Models\User;
 use App\Models\Place;
+use File;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use App\Http\Requests\QrRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Contracts\Support\Renderable;
 
@@ -21,9 +23,10 @@ class QrController extends Controller
     {
         $cSearch = request('txtSearch');
 
-        $oQrs = Qr::orderBy('created_at', 'DESC')
-                        ->searchlist($cSearch)
-                        ->paginate();
+        $oQrs = Qr::with('user', 'place')
+                    ->orderBy('created_at', 'DESC')
+                    ->searchlist($cSearch)
+                    ->paginate();
 
         return view('qrs.index', compact('oQrs', 'cSearch'));
     }
@@ -89,21 +92,18 @@ class QrController extends Controller
      */
     public function destroy(Request $request)
     {
-        $request->validate([
-                    'hidQr' => 'required'
-                ],
-                [
-                    'hidQr.required' => 'Se requiere seleccionar registro.'
-                ]
-            );
-
         $success = true;
         DB::beginTransaction();
 
         try {
             $oQr = Qr::findOrFail($request->input("hidQr"));
-
+            $cSrc = $oQr->src;
             $oQr->delete();
+
+            if(File::exists(storage_path("app/public/qrcodes/$cSrc")))
+            {
+                Storage::delete("public/qrcodes/$cSrc");
+            }
 
         } catch (\Exception $exception) {
             DB::rollBack();

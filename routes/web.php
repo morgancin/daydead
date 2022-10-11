@@ -27,28 +27,11 @@ Route::get('download/{path}/{attachment}', function($path, $attachment) {
 
 Route::get('/', function () {
     return view('welcome');
-    /*
-    $response = Http::post('https://api.leader.sale/prospect/add-lead-lp', [
-        'Name' => "Carmen Martínez",
-        'Email' => "email@correo.com",
-        'Phone' => "",
-        'UserId' => 13,
-        'PlaceId' => 89,
-    ]);
-
-    dd($response['body']['ProspectId']);
-    */
 });
-
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/users', [UserController::class, 'index'])->name('users');
-Route::post('/users', [UserController::class, 'index'])->name('users.post');
-Route::get('/users/register', [UserController::class, 'create'])->name('users.register');
-Route::post('/users/register', [UserController::class, 'store'])->name('users.store');
 
 Route::get('/leads', [LeadController::class, 'index'])->name('leads');
 Route::get('/leads/register/{hash}', [LeadController::class, 'create'])->name('leads.register');
@@ -61,6 +44,27 @@ Route::post('/leads/register', [LeadController::class, 'store'])->name('leads.re
 //Route::post('places', [PlaceController::class, 'index'])->name('places.post');
 //Route::get('places/register', [PlaceController::class, 'create'])->name('places.register');
 //Route::post('places/register', [PlaceController::class, 'store'])->name('places.register.store');
+Route::group(['prefix' => "users"], function()
+{
+    /*
+    Route::get('/users', [UserController::class, 'index'])->name('users');
+    Route::post('/users', [UserController::class, 'index'])->name('users.post');
+    Route::get('/users/register', [UserController::class, 'create'])->name('users.register');
+    Route::post('/users/register', [UserController::class, 'store'])->name('users.store');
+    */
+
+    Route::controller(UserController::class)->group(function ()
+    {
+        Route::get('/', 'index')->name('users');
+        Route::post('/', 'index')->name('users.post');
+        Route::put('/update', 'update')->name('users.update');
+        Route::post('/register', 'store')->name('users.store');
+        Route::get('/update/{user}', 'edit')->name('users.edit');
+        Route::delete('/delete', 'destroy')->name('users.delete');
+        Route::get('/register', 'create')->name('users.register');
+    });
+});
+
 Route::group(['prefix' => "qrs"], function()
 {
     Route::controller(QrController::class)->group(function ()
@@ -74,7 +78,6 @@ Route::group(['prefix' => "qrs"], function()
         Route::post('/register', 'store')->name('qrs.register.store');
     });
 });
-
 
 Route::group(['prefix' => "places"], function()
 {
