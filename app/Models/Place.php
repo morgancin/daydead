@@ -22,7 +22,7 @@ class Place extends Model
         'code',
     ];
 
-    ////////////RELATION SHIP
+    ////////////RELATIONSHIPS
     public function qrs(): HasMany
     {
         return $this->hasMany(Qr::class, 'place_id', 'id');

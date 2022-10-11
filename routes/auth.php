@@ -19,8 +19,6 @@ Route::middleware('guest')->group(function () {
                 ->name('users.store');
     */
 
-    Route::get('/', [AuthenticatedSessionController::class, 'create'])->name('login');
-
     Route::get('login', [AuthenticatedSessionController::class, 'create'])
                 ->name('login');
 

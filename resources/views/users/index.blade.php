@@ -66,6 +66,7 @@
                                                 <tr>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">CÓDIGO</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">NOMBRE</th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">EMAIL</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">LUGAR</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">MANAGER</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ACCIONES</th>
@@ -77,6 +78,7 @@
                                                     <tr class="border-b">
                                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $user->code }}</td>
                                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $user->name }}</td>
+                                                        <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $user->email }}</td>
                                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $user->place }}</td>
                                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $user->manager }}</td>
                                                         <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">

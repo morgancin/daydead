@@ -23,8 +23,17 @@ class QrController extends Controller
     {
         $cSearch = request('txtSearch');
 
-        $oQrs = Qr::with('user', 'place')
-                    ->orderBy('created_at', 'DESC')
+        $oQrs = Qr::with('user', 'place');
+
+        if (auth()->check())
+        {
+            if(auth()->user()->role == 'user')
+            {
+                $oQrs->where('user_id', auth()->user()->id);
+            }
+        }
+
+        $oQrs = $oQrs->orderBy('created_at', 'DESC')
                     ->searchlist($cSearch)
                     ->paginate();
 
@@ -39,8 +48,8 @@ class QrController extends Controller
     public function create()
     {
         $oQr = new Qr;
-        $oUsers = User::get();
         $oPlaces = Place::get();
+        $oUsers = User::where('role', 'user')->get();
 
 		return view('qrs.form', compact('oQr', 'oUsers', 'oPlaces'));
     }

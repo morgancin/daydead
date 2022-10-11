@@ -21,9 +21,19 @@ class LeadController extends Controller
 
         $oLeads = Lead::with(['qr' => function($q){
                             $q->with('user', 'place');
-                        }])
-                        ->orderBy('created_at', 'DESC')
-                        //->searchlist($cSearch)
+                        }]);
+
+        if (auth()->check())
+        {
+            if(auth()->user()->role == 'user')
+            {
+                $oLeads->whereHas('qr', function($q) {
+                    $q->where('user_id', auth()->user()->id);
+                });
+            }
+        }
+
+        $oLeads = $oLeads->orderBy('created_at', 'DESC')
                         ->paginate();
 
         return view('leads.index', compact('oLeads', 'cSearch'));

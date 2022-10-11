@@ -19,22 +19,26 @@
                         <form method="POST" action="{{ route('qrs.register.store') }}" novalidate>
                             @csrf
 
-                            <!-- User -->
-                            <div>
-                                <x-input-label for="user_id" :value="__('Usuario')" />
+                            @auth
+                                @if(auth()->user()->role == 'admin')
+                                    <!-- User -->
+                                    <div>
+                                        <x-input-label for="user_id" :value="__('Usuario')" />
 
-                                <select
-                                    id="user_id"
-                                    name="user_id"
-                                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-                                        <option>-- Seleccione --</option>
-                                        @foreach($oUsers as $user)
-                                            <option value="{{ $user->id }}">{{ $user->name }}</option>
-                                        @endforeach
-                                </select>
+                                        <select
+                                            id="user_id"
+                                            name="user_id"
+                                            class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
+                                                <option>-- Seleccione --</option>
+                                                @foreach($oUsers as $user)
+                                                    <option value="{{ $user->id }}">{{ $user->name }}</option>
+                                                @endforeach
+                                        </select>
 
-                                <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
-                            </div>
+                                        <x-input-error :messages="$errors->get('user_id')" class="mt-2" />
+                                    </div>
+                                @endif
+                            @endauth
 
                             <!-- Place -->
                             <div>
