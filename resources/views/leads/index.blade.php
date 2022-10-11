@@ -13,8 +13,6 @@
                        <!--<h1 class="text-center">LISTADO USUARIOS </h1>-->
                     </div>
 
-
-
                     <form action="{{ route('leads.delete') }}" method="POST" name="frmDelete" id="frmDelete">
                         @csrf
                         @method('DELETE')
@@ -26,7 +24,7 @@
                         <!-- Search -->
                         <div date-rangepicker class="flex items-center place-content-end">
                             <!-- Search by name and place -->
-                            <div class="">
+                            <div>
                                 <div class=" container-1 p-3">
                                     <input type="search" class=" border
                                                 rounded-lg
@@ -41,6 +39,13 @@
                                                 sm:text-sm
                                                 pl-10 p-2.5 w-90"
                                             name="txtSearchPlace" id="searchplace" placeholder="Buscar Lugar" />
+
+                                    <select name="cmbSearch" id="cmbSearch" class="rounded-md shadow-sm border-bg-slate-900 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-60">
+                                        <option></option>
+                                        <option value="PF">PREVENCIÓN FINAL</option>
+                                        <option value="SG">SANTA GLORIA</option>
+                                        <option value="BF">BYE BYE FRIEND</option>
+                                    </select>
                                 </div>
                             </div>
 
