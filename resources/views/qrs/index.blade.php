@@ -16,12 +16,12 @@
                    <!-- Boton de crear registro-->
                     <div class="flex items-center place-content-end ">
                         <div class="container-1 p1">
-                            <a href="{{ route('qrs.register') }}" class="bg-lime-600
+                            <a href="{{ route('qrs.register') }}" class="bg-gray-600
                             sm:text-sm
-                           hover:bg-lime-900
+                           hover:bg-gray-900
                            text-white
                            font-bold
-                           py-2
+                           py-3
                            px-4 rounded p-1">Crear Registro</a>
                         </div>
                     </div>
@@ -41,15 +41,15 @@
                         <div date-rangepicker class="flex items-center place-content-end">
                             <!-- Busqueda por nombre y lugar -->
                             <div>
-                                <div class=" container-1 p-3">
+                                <div class=" container-1 py-3">
                                     <input type="text" class="border
                                                                 rounded-lg
-                                                                border-purple-900
+                                                                border-gray-900
                                                                 sm:text-sm
                                                                 pl-10 p-2.5 w-90"
                                             name="txtSearch" placeholder="Buscar por clave o lugar" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
 
-                                    <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-1">Buscar</button>
+                                    <button type="submit" class="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-9 rounded">Buscar</button>
                                 </div>
                             </div>
                         </div>
@@ -63,7 +63,7 @@
 
                                   <table class="min-w-full">
                                     <thead class="border-b">
-                                      <tr>
+                                      <tr class="border border-b-indigo-500">
                                         <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">
                                             USUARIO
                                         </th>
@@ -86,9 +86,9 @@
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->place->name }}</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->businessline }}</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
-                                                    <a href="#" onClick="event.preventDefault(); document.getElementById('hidQr').value = '{{ $qr->id }}'; document.getElementById('frmDelete').submit();" class="btn btn-default btn-sm float-left">Eliminar</a>
+                                                    <a href="#" onClick="event.preventDefault(); document.getElementById('hidQr').value = '{{ $qr->id }}'; document.getElementById('frmDelete').submit();" class="text-red-600 hover:underline">Eliminar</a>
                                                     |
-                                                    <a href="{{ url("download/qrcodes/$qr->src") }}" class="btn btn-default btn-sm float-left" download>Descargar</a>
+                                                    <a href="{{ url("download/qrcodes/$qr->src") }}" class="text-teal-800 hover:underline" download>Descargar</a>
                                                 </td>
                                             </tr>
                                         @empty
