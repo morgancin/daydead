@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Events\Registered;
@@ -34,6 +35,7 @@ class UserController extends Controller
         */
 
         $oUsers = User::with('qrs')
+                    ->where('role', 'user')
                     ->paginate();
 
         return view('users.index', compact('oUsers'));
@@ -60,7 +62,6 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            //'leader_user_id' => ['required', 'numeric'],
             'name' => ['required', 'string', 'max:255'],
             'code' => ['required', 'string', 'max:100'],
             'place' => ['required', 'string', 'max:100'],
@@ -69,6 +70,35 @@ class UserController extends Controller
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
 
+        $success = true;
+        DB::beginTransaction();
+
+        try	{
+            //@var \App\Models\User
+            $user = User::create([
+                'role' => 'user',
+                'name' => $request->name,
+                'code' => $request->code,
+                'place' => $request->place,
+                'email' => $request->email,
+                'manager' => $request->manager,
+                'password' => Hash::make($request->password),
+            ]);
+        } catch (\Exception $e) {
+            DB::rollBack();
+            $success = false;
+            $message = $e->getMessage();
+        }
+
+        if ($success === true) {
+            DB::commit();
+            $message =  'Registro insertado correctamente';
+        }
+
+        //return back()->with(['success' => $success, 'message' => $message]);
+        return redirect()->route('users')->with(['success' => $success, 'message' => $message]);
+
+        /*
         $user = User::create([
             'role' => 'user',
             'name' => $request->name,
@@ -85,5 +115,6 @@ class UserController extends Controller
         //Auth::login($user);
 
         //return redirect(RouteServiceProvider::HOME);
+        */
     }
 }
