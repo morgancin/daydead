@@ -30,22 +30,15 @@
                                                 rounded-lg
                                                 border-purple-900
                                                 sm:text-sm
-                                                pl-10 p-2.5 w-90"
+                                                pl-10 p-2.5 w-48"
                                             name="txtSearch" id="search" placeholder="Buscar Nombre" />
 
                                     <input type="search" class="border
                                                 rounded-lg
                                                 border-purple-900
                                                 sm:text-sm
-                                                pl-10 p-2.5 w-90"
+                                                pl-10 p-2.5 w-48"
                                             name="txtSearchPlace" id="searchplace" placeholder="Buscar Lugar" />
-
-                                    <select name="cmbSearch" id="cmbSearch" class="rounded-md shadow-sm border-bg-slate-900 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-60">
-                                        <option></option>
-                                        <option value="PF">PREVENCIÓN FINAL</option>
-                                        <option value="SG">SANTA GLORIA</option>
-                                        <option value="BF">BYE BYE FRIEND</option>
-                                    </select>
                                 </div>
                             </div>
 
@@ -59,7 +52,7 @@
                                                                     border-purple-900
                                                                     sm:text-sm
                                                                     rounded-lg
-                                                                    block w-full pl-10 p-2.5"
+                                                                    block w-48 pl-10 p-2.5"
                                                                 placeholder="Fecha de Inicio" />
                             </div>
 
@@ -74,11 +67,19 @@
                                                                 border-purple-900
                                                                 sm:text-sm
                                                                 rounded-lg
-                                                                block w-full pl-10 p-2.5"
+                                                                block w-48 pl-10 p-2.5"
                                                         placeholder="Fecha Fin" />
                             </div>
+                            <div>
+                                <select name="cmbSearch" id="cmbSearch" class="rounded-md shadow-sm border-bg-slate-900 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-48">
+                                    <option></option>
+                                    <option value="PF">PREVENCIÓN FINAL</option>
+                                    <option value="SG">SANTA GLORIA</option>
+                                    <option value="BF">BYE BYE FRIEND</option>
+                                </select>
+                            </div>
                             <div class="p-3">
-                                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded p-1">Buscar</button>
+                                <button class="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-9 rounded">Buscar</button>
                             </div>
                         </div>
                         <!--Fin -->
@@ -92,7 +93,7 @@
 
                                     <table class="min-w-full">
                                         <thead class="border-b">
-                                            <tr>
+                                            <tr class="border border-b-indigo-500">
                                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">NOMBRE</th>
                                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">EMAIL</th>
                                                 <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">TELÉFONO</th>
