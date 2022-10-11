@@ -1,8 +1,8 @@
 <?php
 
-use Illuminate\Support\Facades\Http;
+use Illuminate\Http\Response;
 
-
+//use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\QrController;
 use App\Http\Controllers\LeadController;
@@ -19,6 +19,11 @@ use App\Http\Controllers\PlaceController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/////////////DOWNLOAD FILE
+Route::get('download/{path}/{attachment}', function($path, $attachment) {
+    return response()->download(storage_path("app/public/$path/$attachment"));
+});
 
 Route::get('/', function () {
     return view('welcome');
@@ -40,21 +45,36 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
-Route::get('users', [UserController::class, 'index'])->name('users');
-Route::post('users', [UserController::class, 'index'])->name('users.post');
-Route::get('users/register', [UserController::class, 'create'])->name('users.register');
-Route::post('users/register', [UserController::class, 'store'])->name('users.store');
+Route::get('/users', [UserController::class, 'index'])->name('users');
+Route::post('/users', [UserController::class, 'index'])->name('users.post');
+Route::get('/users/register', [UserController::class, 'create'])->name('users.register');
+Route::post('/users/register', [UserController::class, 'store'])->name('users.store');
 
-Route::get('leads/register', [LeadController::class, 'create'])->name('leads.register');
-Route::post('leads/register', [LeadController::class, 'store'])->name('leads.register.store');
+Route::get('/leads', [LeadController::class, 'index'])->name('leads');
+Route::get('/leads/register/{hash}', [LeadController::class, 'create'])->name('leads.register');
+Route::post('/leads/register', [LeadController::class, 'store'])->name('leads.register.store');
 
-Route::get('qrs/register', [QrController::class, 'create'])->name('qrs.register');
-Route::post('qrs/register', [QrController::class, 'store'])->name('qrs.register.store');
+//Route::get('/qrs/register', [QrController::class, 'create'])->name('qrs.register');
+//Route::post('/qrs/register', [QrController::class, 'store'])->name('qrs.register.store');
 
 //Route::get('places', [PlaceController::class, 'index'])->name('places');
 //Route::post('places', [PlaceController::class, 'index'])->name('places.post');
 //Route::get('places/register', [PlaceController::class, 'create'])->name('places.register');
 //Route::post('places/register', [PlaceController::class, 'store'])->name('places.register.store');
+Route::group(['prefix' => "qrs"], function()
+{
+    Route::controller(QrController::class)->group(function ()
+    {
+        //Route::put('/update', 'update')->name('places.update');
+        //Route::get('/update/{place}', 'edit')->name('places.edit');
+        Route::get('/', 'index')->name('qrs');
+        Route::post('/', 'index')->name('qrs.post');
+        Route::delete('/delete', 'destroy')->name('qrs.delete');
+        Route::get('/register', 'create')->name('qrs.register');
+        Route::post('/register', 'store')->name('qrs.register.store');
+    });
+});
+
 
 Route::group(['prefix' => "places"], function()
 {
