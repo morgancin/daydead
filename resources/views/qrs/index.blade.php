@@ -83,8 +83,8 @@
                                         @forelse($oQrs as $qr)
                                             <tr class="border-b">
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->user->name }}</td>
-                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->place->name }}</td>
-                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->businessline }}</td>
+                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ (isset($qr->place->name)) ? $qr->place->name : '' }}</td>
+                                                <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $qr->business_line_text }}</td>
                                                 <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                     <a href="#" onClick="event.preventDefault(); document.getElementById('hidQr').value = '{{ $qr->id }}'; document.getElementById('frmDelete').submit();" class="text-red-600 hover:underline">Eliminar</a>
                                                     |

@@ -113,8 +113,8 @@
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $leads->phone }}</td>
 
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $leads->qr->user->name }}</td>
-                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $leads->qr->place->name }}</td>
-                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $leads->qr->businessline }}</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $leads->place->name }}</td>
+                                                    <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">{{ $leads->business_line_text }}</td>
 
                                                     <td class="text-sm text-gray-900 font-light px-6 py-4 whitespace-nowrap">
                                                         <a href="#" onClick="event.preventDefault(); document.getElementById('hidLead').value = '{{ $leads->id }}'; document.getElementById('frmDelete').submit();" class="btn btn-default btn-sm float-left">Eliminar</a>

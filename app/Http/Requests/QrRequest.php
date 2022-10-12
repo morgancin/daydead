@@ -24,8 +24,8 @@ class QrRequest extends FormRequest
     public function rules()
     {
         return [
-            'place_id' => ['required', 'numeric'],
-            'businessline' => ['required', 'string'],
+            'place_id' => ['nullable', 'numeric'],
+            'businessline' => ['nullable', 'string'],
         ];
     }
 }

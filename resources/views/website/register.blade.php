@@ -20,6 +20,7 @@
                     <input type="hidden" name="hidHash" value="{{ $cHash }}" />
 
                     <div class="rounded px-8 pt-6 pb-8 mb-4 flex flex-col">
+
                         <div class="-mx-3 md:flex mb-6 justify-center items-center">
                             <div class="md:w-1/2 px-3 mb-1 md:mb-0">
                                 <label class="relative block">
@@ -79,6 +80,52 @@
                                 </label>
                             </div>
                         </div>
+
+                        @if ($cSelectPlace)
+                            <div class="-mx-3 md:flex mb-6 justify-center items-center">
+                                <div class="md:w-1/2 px-3 mb-1 md:mb-0">
+                                    <select name="cmbPlace" id="panteon" required
+                                            class=" font-sans
+                                                    focus:border-yellow-400
+                                                    focus:outline-none
+                                                    focus:shadow-md
+                                                    rounded-lg
+                                                    bg-fuchsia-900 w-full
+                                                    border
+                                                    border-white
+                                                    text-white
+                                                    py-3 px-4 pr-8
+                                                    rounded-lg" />
+                                        @foreach($oPlaces as $place)
+                                            <option value="{{ $place->id }}">{{ $place->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($cSelectBusiness)
+                            <div class="-mx-3 md:flex mb-6 justify-center items-center  ">
+                                <div class="md:w-1/2 px-3 mb-6 md:mb-0">
+                                    <select name="cmbBusiness" id="sucursal" required
+                                            class=" focus:border-yellow-400
+                                                    focus:outline-none
+                                                    focus:shadow-md
+                                                    rounded-lg
+                                                    bg-fuchsia-900
+                                                    w-full
+                                                    border
+                                                    border-white
+                                                    text-white
+                                                    py-3 px-4 pr-8
+                                                    rounded-lg">
+                                        <option value="PF">PREVENCIÓN FINAL</option>
+                                        <option value="SG">SANTA GLORIA</option>
+                                        <option value="BF">BYE BYE FRIEND</option>
+                                    </select>
+                                </div>
+                            </div>
+                        @endif
 
                         <div class="-mx-3 md:flex mb-6 justify-center items-center">
                             <div class="md:w-1/2 px-3 mb-1 md:mb-0">

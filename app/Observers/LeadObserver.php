@@ -20,16 +20,10 @@ class LeadObserver
             $response = Http::post('https://api.leader.sale/prospect/add-lead-lp', [
                 'Name' => $lead->name,
                 'Email' => $lead->email,
-                'Phone' => $lead->phone,
-                'UserId' => $lead->qr->user->leader_user_id,
+                'Phone' => trim($lead->phone),
                 'PlaceId' => $lead->qr->place->id,
-                //'businessline'
-                //PF (PREVENSIÓN FINAL)
-                //SG (SANTA GLORIA)
-                //BF (BYE BYE FRIEND)
+                'UserId' => (isset($lead->qr->place->id)) ? $lead->qr->place->id : request()->cmbPlace,
             ]);
-
-            //$response['body']['ProspectId']
 
         } catch (Exception $e) {
             $e->getMessage();

@@ -48,7 +48,7 @@
                                     id="place_id"
                                     name="place_id"
                                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-                                        <option>-- Seleccione --</option>
+                                        <option></option>
                                         @foreach($oPlaces as $place)
                                             <option value="{{ $place->id }}">{{ $place->name }}</option>
                                         @endforeach
@@ -65,7 +65,7 @@
                                     id="businessline"
                                     name="businessline"
                                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-                                        <option>-- Seleccione --</option>
+                                        <option></option>
                                         <option value="PF">PREVENCIÓN FINAL</option>
                                         <option value="SG">SANTA GLORIA</option>
                                         <option value="BF">BYE BYE FRIEND</option>

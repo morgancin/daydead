@@ -6,6 +6,7 @@ namespace App\Http\Controllers;
 use App\Models\Qr;
 use App\Models\Lead;
 
+use App\Models\Place;
 use App\Http\Requests\LeadRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Contracts\Support\Renderable;
@@ -25,7 +26,7 @@ class LeadController extends Controller
 
         if (auth()->check())
         {
-            if(auth()->user()->role == 'user')
+            if(auth()->user()->role !== 'admin')
             {
                 $oLeads->whereHas('qr', function($q) {
                     $q->where('user_id', auth()->user()->id);
@@ -52,7 +53,19 @@ class LeadController extends Controller
 
             if($oQr)
             {
-                return view('website.register', compact('cHash'));
+                if(empty($oQr->place_id))
+                {
+                    $cSelectPlace = true;
+                    $oPlaces = Place::get();
+                }else
+                {
+                    $oPlaces = array();
+                    $cSelectPlace = false;
+                }
+
+                $cSelectBusiness = (empty($oQr->businessline)) ? true : false;
+
+                return view('website.register', compact('cHash', 'cSelectPlace', 'cSelectBusiness', 'oPlaces'));
 
             }else
             {
@@ -78,18 +91,20 @@ class LeadController extends Controller
         DB::beginTransaction();
 
         try	{
-            //@var \App\Models\Lead
             $oQr = Qr::where('hash', $request->hidHash)->first();
 
             if($oQr)
             {
+                //@var \App\Models\Lead
                 $oLead = Lead::create([
-                    'qr_id' => $oQr->id,
-                    'name' => $request->name,
-                    'phone' => $request->phone,
-                    'email' => $request->email,
-                    'time_capture' => '00:00',
-                ]);
+                                        'qr_id' => $oQr->id,
+                                        'name' => $request->name,
+                                        'phone' => $request->phone,
+                                        'email' => $request->email,
+                                        'time_capture' => '00:00',
+                                        'place_id' => ($request->has('cmbPlace')) ? $request->cmbPlace : $oQr->place_id,
+                                        'businessline' => ($request->has('cmbBusiness')) ? $request->cmbBusiness : $oQr->businessline,
+                                    ]);
             }else
             {
                 return back()->with(['success' => FALSE, 'message' => 'Hash inválido']);

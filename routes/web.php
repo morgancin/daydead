@@ -34,9 +34,10 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
 Route::get('/dashboard', function () {
     return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+})->name('dashboard');
 */
 
 Route::group(['middleware' => ['auth']], function()
@@ -70,17 +71,17 @@ Route::group(['middleware' => ['auth']], function()
                 Route::post('/register', 'store')->name('places.register.store');
             });
         });
-    });
 
-    Route::group(['prefix' => "qrs"], function()
-    {
-        Route::controller(QrController::class)->group(function ()
+        Route::group(['prefix' => "qrs"], function()
         {
-            Route::get('/', 'index')->name('qrs');
-            Route::post('/', 'index')->name('qrs.post');
-            Route::delete('/delete', 'destroy')->name('qrs.delete');
-            Route::get('/register', 'create')->name('qrs.register');
-            Route::post('/register', 'store')->name('qrs.register.store');
+            Route::controller(QrController::class)->group(function ()
+            {
+                Route::get('/', 'index')->name('qrs');
+                Route::post('/', 'index')->name('qrs.post');
+                Route::delete('/delete', 'destroy')->name('qrs.delete');
+                Route::get('/register', 'create')->name('qrs.register');
+                Route::post('/register', 'store')->name('qrs.register.store');
+            });
         });
     });
 

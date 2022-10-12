@@ -24,17 +24,17 @@
                                 {{ __('Lugares') }}
                             </x-nav-link>
                         </div>
+
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-nav-link :href="route('qrs')" :active="request()->routeIs('qrs')">
+                                {{ __('Qrs') }}
+                            </x-nav-link>
+                        </div>
                     @endif
 
                     <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
                         <x-nav-link :href="route('leads')" :active="request()->routeIs('leads')">
                             {{ __('Seguimientos') }}
-                        </x-nav-link>
-                    </div>
-
-                    <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
-                        <x-nav-link :href="route('qrs')" :active="request()->routeIs('qrs')">
-                            {{ __('Qrs') }}
                         </x-nav-link>
                     </div>
                 @endauth
@@ -98,17 +98,17 @@
                         {{ __('Lugares') }}
                     </x-responsive-nav-link>
                 </div>
+
+                <div class=""pt-2 pb-3 space-y-1">
+                    <x-responsive-nav-link :href="route('qrs')" :active="request()->routeIs('qrs')">
+                        {{ __('Qrs') }}
+                    </x-responsive-nav-link>
+                </div>
             @endif
 
             <div class=""pt-2 pb-3 space-y-1">
                 <x-responsive-nav-link :href="route('leads')" :active="request()->routeIs('leads')">
                     {{ __('Seguimientos') }}
-                </x-responsive-nav-link>
-            </div>
-
-            <div class=""pt-2 pb-3 space-y-1">
-                <x-responsive-nav-link :href="route('qrs')" :active="request()->routeIs('qrs')">
-                    {{ __('Qrs') }}
                 </x-responsive-nav-link>
             </div>
         @endauth

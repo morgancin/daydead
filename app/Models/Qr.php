@@ -52,4 +52,21 @@ class Qr extends Model
         else
             return $query;
     }
+
+     ////////////ACCESSORS
+     public function getBusinessLineTextAttribute()
+     {
+         $cBusinessline = '';
+
+         if($this->businessline == 'SG')
+             $cBusinessline = 'SANTA GLORIA';
+
+         elseif($this->businessline == 'BF')
+             $cBusinessline = 'BYE BYE FRIEND';
+
+         elseif($this->businessline == 'PF')
+             $cBusinessline = 'PREVENCIÓN FINAL';
+
+         return $cBusinessline;
+     }
 }

@@ -28,6 +28,11 @@ class Place extends Model
         return $this->hasMany(Qr::class, 'place_id', 'id');
     }
 
+    public function leads(): HasMany
+    {
+        return $this->hasMany(Lead::class, 'place_id', 'id');
+    }
+
     ////SCOPES
 	public function scopeSearchList($query, $cSearch)
     {
