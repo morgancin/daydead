@@ -71,7 +71,7 @@ class LeadController extends Controller
                     $cSelectPlace = false;
                 }
 
-                $cSelectBusiness = (empty($oQr->businessline)) ? true : false;
+                $cSelectBusiness = (empty($oQr->business_line)) ? true : false;
 
                 return view('website.register', compact('cHash', 'cSelectPlace', 'cSelectBusiness', 'oPlaces'));
 
@@ -111,7 +111,7 @@ class LeadController extends Controller
                                         'email' => $request->email,
                                         'time_capture' => '00:00',
                                         'place_id' => ($request->has('cmbPlace')) ? $request->cmbPlace : $oQr->place_id,
-                                        'businessline' => ($request->has('cmbBusiness')) ? $request->cmbBusiness : $oQr->businessline,
+                                        'business_line' => ($request->has('cmbBusiness')) ? $request->cmbBusiness : $oQr->business_line,
                                     ]);
             }else
             {

@@ -54,24 +54,29 @@
                         <div>
                             <x-input-label for="businessline" :value="__('Negocio')" />
 
-                            <select
-                                id="businessline"
-                                name="businessline"
-                                class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
-                                    <option></option>
-                                    <option value="PF">PREVENCIÓN FINAL</option>
-                                    <option value="SG">SANTA GLORIA</option>
-                                    <option value="BF">BYE BYE FRIEND</option>
-                            </select>
+                            <!-- Business -->
+                            <div>
+                                <x-input-label for="business_line" :value="__('Negocio')" />
 
-                            <x-input-error :messages="$errors->get('businessline')" class="mt-2" />
-                        </div>
+                                <select
+                                    id="business_line"
+                                    name="business_line"
+                                    class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
+                                        <option></option>
+                                        <option value="PF">PREVENCIÓN FINAL</option>
+                                        <option value="SG">SANTA GLORIA</option>
+                                        <option value="BF">BYE BYE FRIEND</option>
+                                </select>
 
-                        <x-primary-button class="mt-4 w-full justify-center">
-                            {{ __('Guardar') }}
-                        </x-primary-button>
-                    </form>
-                </div>
+                                <x-input-error :messages="$errors->get('business_line')" class="mt-2" />
+                            </div>
+
+                            <x-primary-button class="mt-4 w-full justify-center">
+                                {{ __('Guardar') }}
+                            </x-primary-button>
+                        </form>
+                    </x-auth-card>
+                </x-guest-layout>
             </div>
         </div>
     </div>
