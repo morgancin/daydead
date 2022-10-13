@@ -23,10 +23,18 @@ class LeadRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name' => ['required', 'string', 'max:50'],
-            'phone' => ['required', 'min:10', 'max:10'],
-            'email' => ['required', 'string', 'email', 'max:30'],
-        ];
+        $aValidaciones = [
+                            'name' => ['required', 'string', 'max:50'],
+                            'phone' => ['required', 'min:10', 'max:10'],
+                            'email' => ['required', 'string', 'email', 'max:30'],
+                        ];
+
+        if(request()->has('cmbPlace'))
+            $aValidaciones['cmbPlace'] = ['required'];
+
+        if(request()->has('cmbBusiness'))
+            $aValidaciones['cmbBusiness'] = ['required'];
+
+        return $aValidaciones;
     }
 }

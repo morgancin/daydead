@@ -40,6 +40,16 @@ Route::get('/dashboard', function () {
 })->name('dashboard');
 */
 
+Route::post('leads/register', [LeadController::class, 'store'])->name('leads.store');
+Route::get('leads/register/{hash?}', [LeadController::class, 'create'])->name('leads.register');
+/*
+Route::controller(LeadController::class)->group(function ()
+{
+    Route::post('/register', 'store')->name('leads.store');
+    Route::get('/register/{hash?}', 'create')->name('leads.register');
+});
+*/
+
 Route::group(['middleware' => ['auth']], function()
 {
     Route::group(['middleware' => ['role:admin']], function()
@@ -92,10 +102,10 @@ Route::group(['middleware' => ['auth']], function()
             Route::get('/', 'index')->name('leads');
             Route::post('/', 'index')->name('leads.post');
             Route::put('/update', 'update')->name('leads.update');
-            Route::post('/register', 'store')->name('leads.store');
             Route::get('/update/{user}', 'edit')->name('leads.edit');
             Route::delete('/delete', 'destroy')->name('leads.delete');
-            Route::get('/register/{hash?}', 'create')->name('leads.register');
+            //Route::post('/register', 'store')->name('leads.store');
+            //Route::get('/register/{hash?}', 'create')->name('leads.register');
         });
     });
 });

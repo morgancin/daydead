@@ -14,6 +14,17 @@
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/izquierdo.png') }}" alt="">
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/derecho.png') }}" alt="">
           </div>
+
+            @if ($errors->any())
+                <div class="alert alert-danger">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <h2 class="text-white text-center">Consultor : </h2>
                 <form method="POST" action="{{ route('leads.store') }}" novalidate>
                     @csrf
@@ -30,7 +41,7 @@
                                             <use xlink:href="{{ asset("imagenes/bootstrap-icons.svg#person") }}"/>
                                         </svg>
                                     </span>
-                                    <input type="text" name="name" class="bg-fuchsia-900
+                                    <input type="text" name="name" value="{{ old('name') }}" class="bg-fuchsia-900
                                             focus:border-yellow-400
                                             focus:outline-none
                                             focus:shadow-md
@@ -60,7 +71,7 @@
                                             <use xlink:href="{{ asset("imagenes/bootstrap-icons.svg#telephone") }}"/>
                                         </svg>
                                     </span>
-                                    <input type="number" name="phone" class="bg-fuchsia-900
+                                    <input type="number" name="phone" value="{{ old('phone') }}" class="bg-fuchsia-900
                                             focus:border-yellow-400
                                             focus:outline-none
                                             focus:shadow-md
@@ -96,8 +107,9 @@
                                                     text-white
                                                     py-3 px-4 pr-8
                                                     rounded-lg" />
+                                        <option value=""></option>
                                         @foreach($oPlaces as $place)
-                                            <option value="{{ $place->id }}">{{ $place->name }}</option>
+                                            <option value="{{ $place->id }}" {{ (int) old('cmbPlace') === (int) $place->id ? 'selected' : '' }}>{{ $place->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -119,9 +131,10 @@
                                                     text-white
                                                     py-3 px-4 pr-8
                                                     rounded-lg">
-                                        <option value="PF">PREVENCIÓN FINAL</option>
-                                        <option value="SG">SANTA GLORIA</option>
-                                        <option value="BF">BYE BYE FRIEND</option>
+                                        <option value=""></option>
+                                        <option value="PF" {{ old('cmbBusiness') === 'PF' ? 'selected' : '' }}>PREVENCIÓN FINAL</option>
+                                        <option value="SG" {{ old('cmbBusiness') === 'SG' ? 'selected' : '' }}>SANTA GLORIA</option>
+                                        <option value="BF" {{ old('cmbBusiness') === 'BF' ? 'selected' : '' }}>BYE BYE FRIEND</option>
                                     </select>
                                 </div>
                             </div>
@@ -136,7 +149,7 @@
                                             <use xlink:href="{{ asset("imagenes/bootstrap-icons.svg#envelope") }}"/>
                                         </svg>
                                     </span>
-                                    <input type="email" name="email" class="bg-fuchsia-900
+                                    <input type="email" name="email" value="{{ old('email') }}" class="bg-fuchsia-900
                                               focus:border-yellow-400
                                               focus:outline-none
                                               focus:shadow-md
