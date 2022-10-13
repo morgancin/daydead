@@ -16,9 +16,9 @@
                    <!-- Boton de crear registro-->
                     <div class="flex items-center place-content-end ">
                         <div class="container-1 p1">
-                            <a href="{{ route('places.register') }}" class="bg-gray-600
+                            <a href="{{ route('places.register') }}" class="bg-green-900
                             sm:text-sm
-                           hover:bg-gray-900
+                           hover:bg-green-600
                            text-white
                            font-bold
                            py-3

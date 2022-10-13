@@ -16,9 +16,9 @@
                    <!-- Boton de crear registro-->
                     <div class="flex items-center place-content-end ">
                         <div class="container-1 p1">
-                            <a href="{{ route('users.register') }}" class="bg-gray-600
+                            <a href="{{ route('users.register') }}" class="bg-green-900
                             sm:text-sm
-                           hover:bg-gray-900
+                           hover:bg-green-600
                            text-white
                            font-bold
                            py-3
@@ -46,7 +46,7 @@
                                                                 rounded-lg
                                                                 border-grey-900
                                                                 sm:text-sm
-                                                                pl-10 p-2.5 w-90"
+                                                                pl-10 p-2.5 w-96"
                                             name="txtSearch" placeholder="Buscar por nombre o código" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
 
                                     <button type="submit" class="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-9 rounded">Buscar</button>
