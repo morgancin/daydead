@@ -26,7 +26,7 @@ return new class extends Migration
             $table->string('src', 150)->collation('utf8mb4_unicode_ci')->nullable();
             $table->string('hash', 150)->collation('utf8mb4_unicode_ci')->nullable();
 
-            $table->enum('businessline', ['PF', 'SG', 'BF'])->collation('utf8mb4_unicode_ci')->nullable();
+            $table->enum('business_line', ['PF', 'SG', 'BF'])->collation('utf8mb4_unicode_ci')->nullable();
 
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);

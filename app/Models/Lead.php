@@ -20,7 +20,7 @@ class Lead extends Model
         'email',
         'qr_id',
         'place_id',
-        'businessline',
+        'business_line',
         'time_capture',
     ];
 
@@ -40,13 +40,13 @@ class Lead extends Model
     {
         $cBusinessline = '';
 
-        if($this->businessline == 'SG')
+        if($this->business_line == 'SG')
             $cBusinessline = 'SANTA GLORIA';
 
-        elseif($this->businessline == 'BF')
+        elseif($this->business_line == 'BF')
             $cBusinessline = 'BYE BYE FRIEND';
 
-        elseif($this->businessline == 'PF')
+        elseif($this->business_line == 'PF')
             $cBusinessline = 'PREVENCIÓN FINAL';
 
         return $cBusinessline;
@@ -56,7 +56,7 @@ class Lead extends Model
     public function scopeSearchListBusiness($query, $cSearch)
     {
         if($cSearch !== null)
-            return $query->where('businessline', $cSearch);
+            return $query->where('business_line', $cSearch);
         else
             return $query;
     }

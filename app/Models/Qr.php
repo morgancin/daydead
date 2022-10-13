@@ -24,7 +24,7 @@ class Qr extends Model
         'hash',
         'user_id',
         'place_id',
-        'businessline',
+        'business_line',
     ];
 
     ////////////RELATIONSHIPS
@@ -59,13 +59,13 @@ class Qr extends Model
      {
          $cBusinessline = '';
 
-         if($this->businessline == 'SG')
+         if($this->business_line == 'SG')
              $cBusinessline = 'SANTA GLORIA';
 
-         elseif($this->businessline == 'BF')
+         elseif($this->business_line == 'BF')
              $cBusinessline = 'BYE BYE FRIEND';
 
-         elseif($this->businessline == 'PF')
+         elseif($this->business_line == 'PF')
              $cBusinessline = 'PREVENCIÓN FINAL';
 
          return $cBusinessline;

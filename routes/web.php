@@ -33,12 +33,12 @@ Route::get('/', function() {
 Route::get('/', function () {
     return view('welcome');
 });
-
+*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
-*/
+
 
 Route::post('leads/register', [LeadController::class, 'store'])->name('leads.store');
 Route::get('leads/register/{hash?}', [LeadController::class, 'create'])->name('leads.register');
