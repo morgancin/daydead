@@ -38,7 +38,7 @@
                     <form action="{{ route('places') }}" autocomplete="nope" method="POST">
                         @csrf
 
-                        <div date-rangepicker class="flex items-center place-content-end">
+                        <div date-rangepicker class="flex items-center place-content-start">
                             <!-- Busqueda por nombre y lugar -->
                             <div>
                                 <div class=" container-1 py-3">
