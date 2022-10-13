@@ -21,24 +21,14 @@ class UserController extends Controller
      */
     public function index(): Renderable
     {
-        /*
-        $oCategorias = Categoria::get();
-        $cSearch = request('Subcategoria_txtSearch');
-        $nIdCategoria_search = request('Subcategoria_cmbSearch');
-
-		$oSubcategorias = Subcategoria::with('categoria')
-                                    ->searchlistado(request('Subcategoria_txtSearch'))
-                                    ->searchcategoria(request('Subcategoria_cmbSearch'))
-                                    ->paginate();
-
-		return view('administrador.subcategorias.listado', compact('oSubcategorias', 'oCategorias', 'cSearch', 'nIdCategoria_search'));
-        */
+        $cSearch = request('txtSearch');
 
         $oUsers = User::with('qrs')
                     ->where('role', 'user')
+                    ->searchlist($cSearch)
                     ->paginate();
 
-        return view('users.index', compact('oUsers'));
+        return view('users.index', compact('oUsers', 'cSearch'));
     }
 
     /**

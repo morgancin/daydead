@@ -24,7 +24,9 @@ return new class extends Migration
             $table->unsignedBigInteger('place_id')->nullable();
             $table->foreign('place_id')->references('id')->on('places')->onDelete('cascade');
 
-            $table->enum('businessline', ['PF', 'SG', 'BF'])->collation('utf8mb4_unicode_ci')->nullable();
+            $table->unsignedBigInteger('prospect_id')->nullable();
+
+            $table->enum('business_line', ['PF', 'SG', 'BF'])->collation('utf8mb4_unicode_ci')->nullable();
 
             $table->string('name', 50)->collation('utf8mb4_unicode_ci')->nullable();
             $table->string('email', 30)->collation('utf8mb4_unicode_ci')->nullable();

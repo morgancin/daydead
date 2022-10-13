@@ -47,7 +47,7 @@
                                                                 border-grey-900
                                                                 sm:text-sm
                                                                 pl-10 p-2.5 w-90"
-                                            name="txtSearch" placeholder="Buscar por clave o lugar" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
+                                            name="txtSearch" placeholder="Buscar por nombre o código" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
 
                                     <button type="submit" class="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-9 rounded">Buscar</button>
                                 </div>
@@ -68,7 +68,7 @@
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">NOMBRE</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">EMAIL</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">LUGAR</th>
-                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">MANAGER</th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">GERENTE</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ACCIONES</th>
                                                 </tr>
                                             </thead>

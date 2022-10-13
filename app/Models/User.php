@@ -62,4 +62,14 @@ class User extends Authenticatable
     {
         return $this->hasMany(Qr::class, 'user_id', 'id');
     }
+
+    ///SCOPES
+    public function scopeSearchList($query, $cSearch)
+    {
+        if($cSearch !== null)
+            return $query->where('name', 'LIKE', "%$cSearch%")
+                        ->orWhere('code','LIKE',"%$cSearch%");
+        else
+            return $query;
+    }
 }

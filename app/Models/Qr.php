@@ -47,8 +47,9 @@ class Qr extends Model
 	public function scopeSearchList($query, $cSearch)
     {
         if($cSearch !== null)
-            return $query->where('user_id', 'LIKE', "%$cSearch%")
-                        ->orWhere('place_id','LIKE',"%$cSearch%");
+            return $query->whereHas('user', function($q) use($cSearch) {
+                        $q->where('name', 'LIKE', "%$cSearch%");
+                    });
         else
             return $query;
     }

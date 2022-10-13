@@ -51,4 +51,52 @@ class Lead extends Model
 
         return $cBusinessline;
     }
+
+    ///SCOPES
+    public function scopeSearchListBusiness($query, $cSearch)
+    {
+        if($cSearch !== null)
+            return $query->where('businessline', $cSearch);
+        else
+            return $query;
+    }
+
+    public function scopeSearchListPlace($query, $cSearch)
+    {
+        if($cSearch !== null)
+            return $query->whereHas('place', function($q) use($cSearch) {
+                $q->where('name', 'LIKE', "%$cSearch%");
+            });
+        else
+            return $query;
+    }
+
+    public function scopeSearchList($query, $cSearch)
+    {
+        if($cSearch !== null)
+            return $query->whereHas('qr', function($q) use($cSearch)
+                    {
+                        $q->whereHas('user', function($q2) use($cSearch)
+                        {
+                            $q2->where('name', 'LIKE', "%$cSearch%");
+                        });
+                    });
+        else
+            return $query;
+    }
+
+    public function scopeSearchDates($query, $cSearchFchI, $cSearchFchF)
+    {
+        if($cSearchFchI !== null && $cSearchFchF !== null)
+            return $query->whereRaw(
+                "(DATE(created_at) >= ? AND DATE(created_at) <= ?)",
+                [
+                    $cSearchFchI,
+                    $cSearchFchF
+                ]
+            );
+
+        else
+            return $query;
+    }
 }

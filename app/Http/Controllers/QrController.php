@@ -80,7 +80,7 @@ class QrController extends Controller
                 'user_id' => (auth()->user()->role == 'admin') ? $request->user_id : auth()->user()->id,
             ]);
 
-            QrCode::format('png')->size(150)->backgroundColor(255, 0, 0)->color(78, 3, 121)->merge('../public/imagenes/alcisQr.png', 0.3, true)->generate(route('leads.register', $cHash), storage_path("app/public/qrcodes/$cSrc"));
+            QrCode::format('png')->size(450)->generate(route('leads.register', $cHash), storage_path("app/public/qrcodes/$cSrc"));
 
         } catch (\Exception $e) {
             DB::rollBack();

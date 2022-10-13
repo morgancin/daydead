@@ -107,7 +107,7 @@
                                                     text-white
                                                     py-3 px-4 pr-8
                                                     rounded-lg" />
-                                        <option value=""></option>
+                                        <option value="">Selecciona lugar</option>
                                         @foreach($oPlaces as $place)
                                             <option value="{{ $place->id }}" {{ (int) old('cmbPlace') === (int) $place->id ? 'selected' : '' }}>{{ $place->name }}</option>
                                         @endforeach
@@ -131,7 +131,7 @@
                                                     text-white
                                                     py-3 px-4 pr-8
                                                     rounded-lg">
-                                        <option value=""></option>
+                                        <option value="">Selecciona linea de negocio</option>
                                         <option value="PF" {{ old('cmbBusiness') === 'PF' ? 'selected' : '' }}>PREVENCIÓN FINAL</option>
                                         <option value="SG" {{ old('cmbBusiness') === 'SG' ? 'selected' : '' }}>SANTA GLORIA</option>
                                         <option value="BF" {{ old('cmbBusiness') === 'BF' ? 'selected' : '' }}>BYE BYE FRIEND</option>

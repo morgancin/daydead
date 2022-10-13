@@ -21,9 +21,14 @@ class LeadObserver
                 'Name' => $lead->name,
                 'Email' => $lead->email,
                 'Phone' => trim($lead->phone),
-                'PlaceId' => $lead->qr->place->id,
-                'UserId' => (isset($lead->qr->place->id)) ? $lead->qr->place->id : request()->cmbPlace,
+                'PlaceId' => $lead->place->code,
+                'UserId' => $lead->qr->user->leader_user_id,
+                'BusinessLine' => $lead->business_line,
             ]);
+
+            //prospect_id
+
+            //$lead->leader_user_id = $response;
 
         } catch (Exception $e) {
             $e->getMessage();

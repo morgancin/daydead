@@ -19,8 +19,12 @@ class LeadController extends Controller
     public function index(): Renderable
     {
         $cSearch = request('txtSearch');
+        $cSearchFchI = request('txtSearchFchI');
+        $cSearchFchF = request('txtSearchFchF');
+        $cSearchBusiness = request('cmbSearch');
+        $cSearchPlace = request('txtSearchPlace');
 
-        $oLeads = Lead::with(['qr' => function($q){
+        $oLeads = Lead::with(['place', 'qr' => function($q){
                             $q->with('user', 'place');
                         }]);
 
@@ -34,10 +38,14 @@ class LeadController extends Controller
             }
         }
 
-        $oLeads = $oLeads->orderBy('created_at', 'DESC')
+        $oLeads = $oLeads->searchlist($cSearch)
+                        ->searchlistplace($cSearchPlace)
+                        ->searchlistbusiness($cSearchBusiness)
+                        ->searchdates($cSearchFchI, $cSearchFchF)
+                        ->orderBy('created_at', 'DESC')
                         ->paginate();
 
-        return view('leads.index', compact('oLeads', 'cSearch'));
+        return view('leads.index', compact('oLeads', 'cSearch', 'cSearchPlace', 'cSearchFchI', 'cSearchFchF', 'cSearchBusiness'));
     }
 
     /**
