@@ -16,7 +16,7 @@
                             </a>
                         </x-slot>
 
-                        <form method="POST" action="{{ ! $oPlace->id ? route('places.register.store') : route('places.update')}}" novalidate>
+                        <form method="POST" action="{{ ! $oPlace->id ? route('places.store') : route('places.update')}}" novalidate>
                             @csrf
 
                             @if($oPlace->id)

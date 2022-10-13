@@ -59,11 +59,11 @@
 
                             <!-- Business -->
                             <div>
-                                <x-input-label for="businessline" :value="__('Negocio')" />
+                                <x-input-label for="business_line" :value="__('Negocio')" />
 
                                 <select
-                                    id="businessline"
-                                    name="businessline"
+                                    id="business_line"
+                                    name="business_line"
                                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
                                         <option></option>
                                         <option value="PF">PREVENCIÓN FINAL</option>
@@ -71,7 +71,7 @@
                                         <option value="BF">BYE BYE FRIEND</option>
                                 </select>
 
-                                <x-input-error :messages="$errors->get('businessline')" class="mt-2" />
+                                <x-input-error :messages="$errors->get('business_line')" class="mt-2" />
                             </div>
 
                             <x-primary-button class="mt-4 w-full justify-center">

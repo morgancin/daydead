@@ -71,12 +71,15 @@ class QrController extends Controller
             $cHash = Str::uuid();
             $cSrc = $cHash.'.png';
 
+            Qr::where('')->first();
+
+
             //@var \App\Models\Qr
             Qr::create([
                 'src' => $cSrc,
                 'hash' => $cHash,
                 'place_id' => ($request->place_id) ? $request->place_id : null,
-                'businessline' => ($request->businessline) ? $request->businessline : null,
+                'business_line' => ($request->business_line) ? $request->business_line : null,
                 'user_id' => (auth()->user()->role == 'admin') ? $request->user_id : auth()->user()->id,
             ]);
 
