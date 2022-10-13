@@ -9,7 +9,7 @@
         <div class="max-w-7xl  sm:px-6 lg:px-8 md:flex md:justify-center">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg content-center">
                 <div class="p-6 bg-white border-b border-gray-200 content-cente">
-                    <form method="POST" action="{{ ! $oPlace->id ? route('places.register.store') : route('places.update')}}" novalidate>
+                    <form method="POST" action="{{ ! $oPlace->id ? route('places.store') : route('places.update')}}" novalidate>
                         @csrf
 
                         @if($oPlace->id)

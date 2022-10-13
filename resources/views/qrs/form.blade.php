@@ -9,6 +9,7 @@
         <div class="max-w-7xl  sm:px-6 lg:px-8 md:flex md:justify-center">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg content-center">
                 <div class="p-6 bg-white border-b border-gray-200 content-cente">
+
                     <form method="POST" action="{{ route('qrs.register.store') }}" novalidate>
                         @csrf
 
@@ -52,13 +53,9 @@
 
                         <!-- Business -->
                         <div>
-                            <x-input-label for="businessline" :value="__('Negocio')" />
+                            <x-input-label for="business_line" :value="__('Negocio')" />
 
-                            <!-- Business -->
-                            <div>
-                                <x-input-label for="business_line" :value="__('Negocio')" />
-
-                                <select
+                            <select
                                     id="business_line"
                                     name="business_line"
                                     class="rounded-md shadow-sm border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 w-full">
@@ -66,17 +63,17 @@
                                         <option value="PF">PREVENCIÓN FINAL</option>
                                         <option value="SG">SANTA GLORIA</option>
                                         <option value="BF">BYE BYE FRIEND</option>
-                                </select>
+                            </select>
 
-                                <x-input-error :messages="$errors->get('business_line')" class="mt-2" />
-                            </div>
+                            <x-input-error :messages="$errors->get('business_line')" class="mt-2" />
+                        </div>
 
-                            <x-primary-button class="mt-4 w-full justify-center">
-                                {{ __('Guardar') }}
-                            </x-primary-button>
-                        </form>
-                    </x-auth-card>
-                </x-guest-layout>
+                        <x-primary-button class="mt-4 w-full justify-center">
+                            {{ __('Guardar') }}
+                        </x-primary-button>
+                    </form>
+
+                </div>
             </div>
         </div>
     </div>

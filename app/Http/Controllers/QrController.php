@@ -71,19 +71,33 @@ class QrController extends Controller
             $cHash = Str::uuid();
             $cSrc = $cHash.'.png';
 
-            Qr::where('')->first();
+            $nIdPlace = ($request->place_id) ? $request->place_id : null;
+            $cBusinessLine = ($request->business_line) ? $request->business_line : null;
+            $nIdUser = (auth()->user()->role == 'admin') ? $request->user_id : auth()->user()->id;
 
+            $oQr = Qr::where([
+                ['user_id', $nIdUser],
+                ['place_id', $nIdPlace],
+                ['business_line', $cBusinessLine],
+            ])->first();
 
-            //@var \App\Models\Qr
-            Qr::create([
-                'src' => $cSrc,
-                'hash' => $cHash,
-                'place_id' => ($request->place_id) ? $request->place_id : null,
-                'business_line' => ($request->business_line) ? $request->business_line : null,
-                'user_id' => (auth()->user()->role == 'admin') ? $request->user_id : auth()->user()->id,
-            ]);
+            if(!$oQr)
+            {
+                //@var \App\Models\Qr
+                Qr::create([
+                    'src' => $cSrc,
+                    'hash' => $cHash,
+                    'user_id' => $nIdUser,
+                    'place_id' => ($request->place_id) ? $request->place_id : null,
+                    'business_line' => ($request->business_line) ? $request->business_line : null,
+                ]);
 
-            QrCode::format('png')->size(450)->generate(route('leads.register', $cHash), storage_path("app/public/qrcodes/$cSrc"));
+                QrCode::format('png')->size(450)->generate(route('leads.register', $cHash), storage_path("app/public/qrcodes/$cSrc"));
+
+            }else{
+                $success = false;
+                $message =  'El usuario ya tiene generado un Qr con la información seleccionada';
+            }
 
         } catch (\Exception $e) {
             DB::rollBack();
