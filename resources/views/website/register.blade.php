@@ -16,12 +16,14 @@
           </div>
 
             @if ($errors->any())
+                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
                 <div class="alert alert-danger">
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                </div>
                 </div>
             @endif
 
@@ -106,7 +108,7 @@
                                                     border-white
                                                     text-white
                                                     py-3 px-4 pr-8
-                                                    rounded-lg" />
+                                                    rounded-lg">
                                         <option value="">Selecciona lugar</option>
                                         @foreach($oPlaces as $place)
                                             <option value="{{ $place->id }}" {{ (int) old('cmbPlace') === (int) $place->id ? 'selected' : '' }}>{{ $place->name }}</option>
