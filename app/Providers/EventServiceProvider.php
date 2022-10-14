@@ -2,15 +2,15 @@
 
 namespace App\Providers;
 
+use App\Models\Qr;
+use App\Models\Lead;
+use App\Observers\QrObserver;
+use App\Observers\LeadObserver;
+
 use Illuminate\Support\Facades\Event;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Auth\Listeners\SendEmailVerificationNotification;
 use Illuminate\Foundation\Support\Providers\EventServiceProvider as ServiceProvider;
-
-use App\Models\Lead;
-use App\Models\User;
-use App\Observers\LeadObserver;
-use App\Observers\UserObserver;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -32,7 +32,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        User::observe(UserObserver::class);
+        Qr::observe(QrObserver::class);
         Lead::observe(LeadObserver::class);
     }
 

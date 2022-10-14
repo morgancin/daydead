@@ -11,6 +11,7 @@
                 <div class="p-6 bg-white border-b border-gray-200 content-cente">
                     <form method="POST" action="{{ ! $oUser->id ? route('users.store') : route('users.update')}}" novalidate>
                         @csrf
+                        <input type="hidden" name="leader_user_id" id="leader_user_id" />
 
                         @if($oUser->id)
                             @method('PUT')

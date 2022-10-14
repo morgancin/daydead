@@ -133,14 +133,17 @@ class PlaceController extends Controller
 
             $oPlace->delete();
 
-        } catch (\Exception $exception) {
+        } catch (\Exception $e) {
             DB::rollBack();
-            return back()->with(['success' => FALSE, 'message' => $exception->getMessage()]);
+            $success = false;
+            $message = $e->getMessage();
         }
 
         if ($success === true) {
             DB::commit();
-            return back()->with(['success' => TRUE, 'message' => "Registro eliminado correctamente"]);
+            $message = 'Registro eliminado correctamente';
         }
+
+        return back()->with(['success' => $success, 'message' => $message]);
     }
 }

@@ -11,7 +11,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests\QrRequest;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
-use SimpleSoftwareIO\QrCode\Facades\QrCode;
 use Illuminate\Contracts\Support\Renderable;
 
 class QrController extends Controller
@@ -57,7 +56,7 @@ class QrController extends Controller
     /**
      * Handle an incoming registration request.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \Illuminate\Http\QrRequest  $request
      * @return \Illuminate\Http\RedirectResponse
      *
      * @throws \Illuminate\Validation\ValidationException
@@ -91,8 +90,6 @@ class QrController extends Controller
                     'place_id' => ($request->place_id) ? $request->place_id : null,
                     'business_line' => ($request->business_line) ? $request->business_line : null,
                 ]);
-
-                QrCode::format('png')->size(450)->generate(route('leads.register', $cHash), storage_path("app/public/qrcodes/$cSrc"));
 
             }else{
                 $success = false;
