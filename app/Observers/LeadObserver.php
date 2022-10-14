@@ -17,18 +17,22 @@ class LeadObserver
     public function created(Lead $lead)
     {
         try	{
-            $response = Http::post('https://api.leader.sale/prospect/add-lead-lp', [
+            $aRequest = [
                 'Name' => $lead->name,
                 'Email' => $lead->email,
                 'Phone' => trim($lead->phone),
                 'PlaceId' => $lead->place->code,
-                'UserId' => $lead->qr->user->leader_user_id,
                 'BusinessLine' => $lead->business_line,
-            ]);
+                'UserId' => $lead->qr->user->leader_user_id,
+            ];
 
-            //prospect_id
+            $response = Http::post('https://api.leader.sale/prospect/add-lead-lp', $aRequest);
 
-            //$lead->leader_user_id = $response;
+            if((int) $response->status() == 200)
+            {
+                $lead->prospect_id = $response['body']['ProspectId'];
+                $lead->save();
+            }
 
         } catch (Exception $e) {
             $e->getMessage();

@@ -25,7 +25,7 @@ class UserController extends Controller
     {
         $cSearch = request('txtSearch');
 
-        $oUsers = User::with('qrs')
+        $oUsers = User::with('qrs', 'ultimoQr')
                     ->where('role', 'user')
                     ->searchlist($cSearch)
                     ->paginate();
@@ -83,8 +83,10 @@ class UserController extends Controller
                 'place' => $request->place,
                 'email' => $request->email,
                 'manager' => $request->manager,
+                'leader_user_id' => $request->leader_user_id,
                 'password' => Hash::make($request->password),
             ]);
+
         } catch (\Exception $e) {
             DB::rollBack();
             $success = false;
@@ -173,12 +175,15 @@ class UserController extends Controller
 
         } catch (\Exception $exception) {
             DB::rollBack();
-            return back()->with(['success' => FALSE, 'message' => $exception->getMessage()]);
+            $success = false;
+            $message = $exception->getMessage();
         }
 
         if ($success === true) {
             DB::commit();
-            return back()->with(['success' => TRUE, 'message' => "Registro eliminado correctamente"]);
+            $message = "Registro eliminado correctamente";
         }
+
+        return back()->with(['success' => $success, 'message' => $message]);
     }
 }
