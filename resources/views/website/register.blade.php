@@ -9,25 +9,39 @@
       <title>Alcis Corp</title>
     </head>
       <body class="bg-fixed overflow-auto" style="background-image:url({{ asset('imagenes/fondo_petalos.png') }})">
-        <img class="justify-start h-10 w-auto" src="{{ asset('imagenes/Papel_picado.png') }}" alt="">
+        <img class="justify-start  w-auto" src="{{ asset('imagenes/Papel_picado.png') }}" alt="">
           <div class="h-15 flex">
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/izquierdo.png') }}" alt="">
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/derecho.png') }}" alt="">
           </div>
-
+            <!-- Alert -->
             @if ($errors->any())
-                <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative" role="alert">
-                <div class="alert alert-danger">
-                    <ul>
+                <div class="" role="alert">
+                <div class="alert alert-danger bg-green-900">
+                    <strong class="font-bold text-white text-center">
+                    <ul class= "">
                         @foreach ($errors->all() as $error)
-                            <li>{{ $error }}</li>
+                        <span class="block sm:inline"><li class="">{{ $error }}</li></span>
+
                         @endforeach
                     </ul>
+                </strong>
                 </div>
                 </div>
             @endif
-
-            <h2 class="text-white text-center">Consultor : </h2>
+           <!-- Fin  -->
+           <!--Contador de segundos -->
+           <script type="">
+                var n = 0;
+                var l = document.getElementById("contador");
+                window.setInterval(function(){
+                     l.innerHTML = n;
+                        n++;
+                        },1000);
+           </script>
+           <div id="contador"></div>
+           <!--Contador de segundos -->
+            <h5 class="text-white text-center font-bold">¡Bienvenido! </h5>
                 <form method="POST" action="{{ route('leads.store') }}" novalidate>
                     @csrf
                     <input type="hidden" name="hidHash" value="{{ $cHash }}" />
