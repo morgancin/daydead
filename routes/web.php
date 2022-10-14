@@ -33,15 +33,14 @@ Route::get('/', function() {
 Route::get('/', function () {
     return view('welcome');
 });
-*/
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->name('dashboard');
 
+Route::post('users/register', [UserController::class, 'store'])->name('users.store');
+*/
 
-Route::post('leads/register', [LeadController::class, 'store'])->name('leads.store');
-Route::get('leads/register/{hash?}', [LeadController::class, 'create'])->name('leads.register');
 /*
 Route::controller(LeadController::class)->group(function ()
 {
@@ -49,6 +48,9 @@ Route::controller(LeadController::class)->group(function ()
     Route::get('/register/{hash?}', 'create')->name('leads.register');
 });
 */
+
+Route::post('leads/register', [LeadController::class, 'store'])->name('leads.store');
+Route::get('leads/register/{hash?}', [LeadController::class, 'create'])->name('leads.register');
 
 Route::group(['middleware' => ['auth']], function()
 {
@@ -78,7 +80,7 @@ Route::group(['middleware' => ['auth']], function()
                 Route::get('/update/{place}', 'edit')->name('places.edit');
                 Route::delete('/delete', 'destroy')->name('places.delete');
                 Route::get('/register', 'create')->name('places.register');
-                Route::post('/register', 'store')->name('places.register.store');
+                Route::post('/register', 'store')->name('places.store');
             });
         });
 

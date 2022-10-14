@@ -9,14 +9,20 @@
         <div class="max-w-7xl  sm:px-6 lg:px-8 md:flex md:justify-center">
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg content-center">
                 <div class="p-6 bg-white border-b border-gray-200 content-cente">
-                    <form method="POST" action="{{ route('users.store') }}" novalidate>
+                    <form method="POST" action="{{ ! $oUser->id ? route('users.store') : route('users.update')}}" novalidate>
                         @csrf
+
+                        @if($oUser->id)
+                            @method('PUT')
+
+                            <input type="hidden" name="hidUser" id="hidUser" value="{{ $oUser->id }}" />
+                        @endif
 
                         <!-- Name -->
                         <div class="p-2">
                             <x-input-label for="name" :value="__('Nombre')" />
 
-                            <x-text-input id="name" class="block mt-1 w-80" type="text" name="name" :value="old('name')" required autofocus />
+                            <x-text-input id="name" class="block mt-1 w-80" type="text" name="name" :value="old('name', $oUser->name)" required autofocus />
 
                             <x-input-error :messages="$errors->get('name')" class="mt-2" />
                         </div>
@@ -25,7 +31,7 @@
                         <div class="p-2">
                             <x-input-label for="code" :value="__('Clave')" />
 
-                            <x-text-input type="text" name="code" id="code" class="block pl-5 w-80" :value="old('code')" required autofocus />
+                            <x-text-input type="text" name="code" id="code" class="block pl-5 w-80" :value="old('code', $oUser->code)" required autofocus />
 
                             <x-input-error :messages="$errors->get('code')" class="mt-2" />
                         </div>
@@ -34,7 +40,7 @@
                         <div class="p-2">
                             <x-input-label for="place" :value="__('Lugar')" />
 
-                            <x-text-input type="text" name="place" id="place" class="block pl-5 w-80" :value="old('place')" required autofocus />
+                            <x-text-input type="text" name="place" id="place" class="block pl-5 w-80" :value="old('place', $oUser->place)" required autofocus />
 
                             <x-input-error :messages="$errors->get('place')" class="mt-2" />
                         </div>
@@ -44,7 +50,7 @@
                         <div class="p-2">
                             <x-input-label for="manager" :value="__('Gerente')" />
 
-                            <x-text-input type="text" name="manager" id="manager" class="block pl-5 w-80" :value="old('manager')" required autofocus />
+                            <x-text-input type="text" name="manager" id="manager" class="block pl-5 w-80" :value="old('manager', $oUser->manager)" required autofocus />
 
                             <x-input-error :messages="$errors->get('manager')" class="mt-2" />
                         </div>
@@ -53,7 +59,7 @@
                         <div class="p-2">
                             <x-input-label for="email" :value="__('Email')" />
 
-                            <x-text-input id="email" class="block pl-5 w-80" type="email" name="email" :value="old('email')" required />
+                            <x-text-input type="email" name="email" id="email" class="block pl-5 w-80" :value="old('email', $oUser->email)" required />
 
                             <x-input-error :messages="$errors->get('email')" class="mt-2" />
                         </div>
