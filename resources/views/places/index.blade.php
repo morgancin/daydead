@@ -8,15 +8,16 @@
     <div class="py-12">
 
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <!-- Alerts -->
-            <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
-                <span class="font-medium"></span> El registro no se hizo correctamente.
-              </div>
-
-                <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
-                    <span class="font-medium"></span> El registro se hizo correctamente.
-                </div>
-                <!--Fin de Alerts -->
+             <!-- Alerts -->
+       @if(session('message'))
+       <div class="{{ (session('success')) ? 'bg-green-100 border border-green-400 text-green-700' : 'bg-red-100 border border-red-400 text-red-700' }} px-4 py-3 rounded relative" role="alert">
+           <span class="block sm:inline">{{ session('message') }}</span>
+           <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+               <svg class="fill-current h-6 w-6 {{ (session('success')) ? 'text-green-500' : 'text-red-500' }}" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"></svg>
+           </span>
+       </div>
+   @endif
+          <!--Fin de Alerts -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="center  ">
