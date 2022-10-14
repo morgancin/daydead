@@ -46,7 +46,7 @@
                                                                 rounded-lg
                                                                 border-gray-900
                                                                 sm:text-sm
-                                                                pl-10 p-2.5 w-90"
+                                                                pl-10 p-2.5 w-96"
                                             name="txtSearch" placeholder="Buscar por lugar" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
 
                                     <button type="submit" class="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-9 rounded">Buscar</button>
