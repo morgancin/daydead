@@ -5,6 +5,16 @@
         </h2>
     </x-slot>
 
+       <!-- Alerts -->
+       @if(session('message'))
+       <div class="{{ (session('success')) ? 'bg-green-100 border border-green-400 text-green-700' : 'bg-red-100 border border-red-400 text-red-700' }} px-4 py-3 rounded relative" role="alert">
+           <span class="block sm:inline">{{ session('message') }}</span>
+           <span class="absolute top-0 bottom-0 right-0 px-4 py-3">
+               <svg class="fill-current h-6 w-6 {{ (session('success')) ? 'text-green-500' : 'text-red-500' }}" role="button" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20"></svg>
+           </span>
+       </div>
+   @endif
+          <!--Fin de Alerts qqq  -->
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
 
@@ -48,7 +58,7 @@
                     <form action="{{ route('users') }}" autocomplete="nope" method="POST">
                         @csrf
 
-                        <div date-rangepicker class="flex items-center place-content-end">
+                        <div date-rangepicker class="flex items-center place-content-start">
                             <!-- Busqueda por nombre y lugar -->
                             <div>
                                 <div class=" container-1 py-3">
@@ -80,6 +90,7 @@
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">LUGAR</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">GERENTE</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ACCIONES</th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">QR</th>
                                                 </tr>
                                             </thead>
 
@@ -96,6 +107,17 @@
                                                             |
                                                             <a href="{{ route('users.edit', $user->id) }}" class="text-teal-800 hover:underline">Editar</a>
                                                         </td>
+                                                         <!--Iconos de identificacion qr -->
+                                                        <td>
+                                                            <svg class="h-5 w-5 text-green-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                              </svg>
+
+                                                              <svg class="h-5 w-5 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                              </svg>
+                                                        </td>
+                                                        <!--Iconos de identificacion qr -->
                                                     </tr>
                                                 @empty
                                                     <tr class="border-b">

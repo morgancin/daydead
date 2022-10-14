@@ -6,6 +6,7 @@
     </x-slot>
 
     <div class="py-12">
+
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
             @if(session('message'))
                 <div class="{{ (session('success')) ? 'bg-green-100 border border-green-400 text-green-700' : 'bg-red-100 border border-red-400 text-red-700' }} px-4 py-3 rounded relative" role="alert">
@@ -47,7 +48,7 @@
                     <form action="{{ route('places') }}" autocomplete="nope" method="POST">
                         @csrf
 
-                        <div date-rangepicker class="flex items-center place-content-end">
+                        <div date-rangepicker class="flex items-center place-content-start">
                             <!-- Busqueda por nombre y lugar -->
                             <div>
                                 <div class=" container-1 py-3">
@@ -55,7 +56,7 @@
                                                                 rounded-lg
                                                                 border-gray-900
                                                                 sm:text-sm
-                                                                pl-10 p-2.5 w-90"
+                                                                pl-10 p-2.5 w-96"
                                             name="txtSearch" placeholder="Buscar por lugar" @if(@isset($cSearch)) value="{{ $cSearch }}" @endif autocomplete="off" />
 
                                     <button type="submit" class="bg-gray-600 hover:bg-gray-900 text-white font-bold py-2 px-9 rounded">Buscar</button>
