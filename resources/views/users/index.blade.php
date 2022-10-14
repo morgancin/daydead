@@ -7,6 +7,15 @@
 
     <div class="py-12">
         <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+                 <!-- Alerts -->
+                 <div class="p-4 mb-4 text-sm text-red-700 bg-red-100 rounded-lg dark:bg-red-200 dark:text-red-800" role="alert">
+                    <span class="font-medium"></span> El registro no se hizo correctamente.
+                  </div>
+
+                    <div class="p-4 mb-4 text-sm text-green-700 bg-green-100 rounded-lg dark:bg-green-200 dark:text-green-800" role="alert">
+                        <span class="font-medium"></span> El registro se hizo correctamente.
+                    </div>
+                    <!--Fin de Alerts -->
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 bg-white border-b border-gray-200">
                     <div class="center  ">
@@ -70,6 +79,7 @@
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">LUGAR</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">GERENTE</th>
                                                     <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">ACCIONES</th>
+                                                    <th scope="col" class="text-sm font-medium text-gray-900 px-6 py-4 text-left">QR</th>
                                                 </tr>
                                             </thead>
 
@@ -86,6 +96,17 @@
                                                             |
                                                             <a href="{{ route('users.edit', $user->id) }}" class="text-teal-800 hover:underline">Editar</a>
                                                         </td>
+                                                         <!--Iconos de identificacion qr -->
+                                                        <td>
+                                                            <svg class="h-5 w-5 text-green-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                              </svg>
+
+                                                              <svg class="h-5 w-5 text-red-500"  fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                                                              </svg>
+                                                        </td>
+                                                        <!--Iconos de identificacion qr -->
                                                     </tr>
                                                 @empty
                                                     <tr class="border-b">
