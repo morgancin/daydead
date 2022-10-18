@@ -1,0 +1,111 @@
+@tailwind base;
+
+@tailwind components;
+
+.select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #fff;
+    line-height: 28px;
+}
+select2-container .select2-selection--single .select2-selection__rendered {
+    /* DIV inside Selection box with text, clear button and arrow down*/
+    @apply block h-6 pl-1 pr-6 truncate;
+    text-color:white !important;
+}
+.select2-results {
+	@apply block text-black dark:text-gray-300;
+    text-color:white !important;
+}
+
+.select2-results__options {
+	@apply list-none m-0 p-0;
+    text-color:white !important;
+}
+
+.select2-results__option {
+	/* The rows with results that you see after dropdown.
+	Increase p-1 to p-2 to have more space between results */
+	@apply p-1 select-none;
+    text-color:white !important;
+}
+	.select2-results__option[aria-selected] {
+    	@apply cursor-pointer;
+        text-color:white !important;
+    }
+
+body {color: black;}
+
+.select2-container {
+	/* The container where the selectbox is housing*/
+	@apply relative box-border align-middle inline-block m-0 mb-2 ;
+    background-color: #701a75 !important;
+    height: 50px !important;
+    border: 5px;
+    border-radius: 10px !important;
+    text-color:white !important;
+
+
+}
+	.select2-container .select2-selection--single {
+		/* Selection box itself */
+		@apply box-border cursor-pointer block select-none shadow border rounded ;
+        background-color: #701a75 !important;
+        height: 50px !important;
+        border-radius: 10px !important;
+        text-color:white !important;
+	}
+
+		.select2-container .select2-selection--single .select2-selection__rendered {
+			/* DIV inside Selection box with text, clear button and arrow down*/
+			@apply block h-6 pl-1 pr-6 truncate ;
+            background-color: #701a75 !important;
+            height: 50px !important;
+            border: 1px solid white !important;
+            border-radius: 10px !important;
+            text-color:white !important;
+		}
+		.select2-container .select2-selection--single .select2-selection__clear {
+			/* The DIV where the X is housing to clear the chosen option */
+			@apply relative -m-1;
+            background-color: #701a75 !important;
+            height: 50px !important;
+		}
+.select2-dropdown {
+   /* background-color: #701a75 !important; */
+    border: 5px solid white !important;
+    border-radius: 10px;
+    box-sizing: border-box;
+    display: block;
+    position: absolute;
+    left: -100000px;
+    width: 1000%;
+    z-index: 1051; }
+
+
+    .select2-close-mask {
+        @apply block w-12 min-w-full m-0 p-0;
+        border: 0;
+        position: fixed;
+        left: 0;
+        top: 0;
+        min-height: 100%;
+        height: auto;
+        width: auto;
+        opacity: 0;
+        z-index: 99;
+        background-color: purple !important;
+        filter: alpha(opacity=0);
+    }
+
+
+.select2-hidden-accessible {
+    border: 0 !important;
+    clip: rect(0 0 0 0) !important;
+    -webkit-clip-path: inset(50%) !important;
+    clip-path: inset(50%) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    width: 1px !important;
+    white-space: nowrap !important;
+}
