@@ -40,7 +40,7 @@ class UserRequest extends FormRequest
             'place' => ['required', 'string', 'max:100'],
             'manager' => ['required', 'string', 'max:100'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->hidUser],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->hidUser.',id,deleted_at,NULL'],
         ];
     }
 }

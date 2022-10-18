@@ -50,7 +50,7 @@ class Lead extends Model
             $cBusinessline = 'BYE BYE FRIEND';
 
         elseif($this->business_line == 'PF')
-            $cBusinessline = 'PREVENCIÓN FINAL';
+            $cBusinessline = 'PREVISIÓN FINAL';
 
         return $cBusinessline;
     }

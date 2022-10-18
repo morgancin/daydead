@@ -34,6 +34,8 @@ return new class extends Migration
 
             $table->time('time_capture', $precision = 0);
 
+            //status
+
             $table->timestamps();
             $table->softDeletes($column = 'deleted_at', $precision = 0);
         });

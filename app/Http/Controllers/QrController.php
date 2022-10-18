@@ -47,7 +47,10 @@ class QrController extends Controller
     public function create()
     {
         $oQr = new Qr;
-        $oPlaces = Place::get();
+
+        $oPlaces = Place::whereStatus(1)
+                        ->get();
+
         $oUsers = User::where('role', 'user')->get();
 
 		return view('qrs.form', compact('oQr', 'oUsers', 'oPlaces'));

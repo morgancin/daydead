@@ -24,13 +24,15 @@ class PlaceRequest extends FormRequest
      */
     public function rules()
     {
-        //$response = Http::get("https://api.leader.sale/catalog/".$this->code."/place-valid");
-        //$cIn = ((int) $response->status() == 200) ? $this->code : null;
+        $cIn = null;
+        $response = Http::get("https://api.leader.sale/catalog/".$this->code."/place-valid");
+
+        if((int) $response->status() === 200)
+            $cIn = $this->code;
 
         return [
             'name' => ['required', 'string', 'max:100'],
-            'code' => ['required', 'string', 'max:100'],
-            //'code' => ['required', 'string', 'max:100', "in:$cIn"],
+            'code' => ['required', 'string', 'max:100', "in:$cIn"],
         ];
     }
 }

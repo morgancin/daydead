@@ -43,7 +43,11 @@
            </script>
            <div id="contador"></div>
            <!--Contador de segundos -->
-            <h5 class="text-white text-center font-bold">¡Bienvenido! </h5>
+            <h5 class="text-white text-center font-bold">
+                ¡Bienvenido!
+                <br />
+                Te Atiende: {{ $oQr->user->name }}
+            </h5>
                 <form method="POST" action="{{ route('leads.store') }}" novalidate>
                     @csrf
                     <input type="hidden" name="hidHash" value="{{ $cHash }}" />
@@ -180,7 +184,7 @@
                                                     py-3 px-4 pr-8
                                                     rounded-lg">
                                         <option value="">Selecciona linea de negocio</option>
-                                        <option value="PF" {{ old('cmbBusiness') === 'PF' ? 'selected' : '' }}>PREVENCIÓN FINAL</option>
+                                        <option value="PF" {{ old('cmbBusiness') === 'PF' ? 'selected' : '' }}>PREVISIÓN FINAL</option>
                                         <option value="SG" {{ old('cmbBusiness') === 'SG' ? 'selected' : '' }}>SANTA GLORIA</option>
                                         <option value="BF" {{ old('cmbBusiness') === 'BF' ? 'selected' : '' }}>BYE BYE FRIEND</option>
                                     </select>

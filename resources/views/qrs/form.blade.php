@@ -17,7 +17,7 @@
                             @if(auth()->user()->role == 'admin')
                                 <!-- User -->
                                 <div>
-                                    <x-input-label for="user_id" :value="__('Usuario')" />
+                                    <x-input-label for="user_id" :value="__('Usuario (REQUERIDO)')" />
 
                                     <select
                                         id="user_id"
@@ -36,7 +36,7 @@
 
                         <!-- Place -->
                         <div>
-                            <x-input-label for="place_id" :value="__('Lugar')" />
+                            <x-input-label for="place_id" :value="__('Lugar (opcional)')" />
 
                             <select
                                 id="place_id"
@@ -53,7 +53,7 @@
 
                         <!-- Business -->
                         <div>
-                            <x-input-label for="business_line" :value="__('Negocio')" />
+                            <x-input-label for="business_line" :value="__('Negocio (opcional)')" />
 
                             <select
                                     id="business_line"

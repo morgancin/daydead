@@ -64,7 +64,8 @@ class LeadController extends Controller
                 if(empty($oQr->place_id))
                 {
                     $cSelectPlace = true;
-                    $oPlaces = Place::get();
+                    $oPlaces = Place::whereStatus(1)
+                                    ->get();
                 }else
                 {
                     $oPlaces = array();
@@ -73,7 +74,7 @@ class LeadController extends Controller
 
                 $cSelectBusiness = (empty($oQr->business_line)) ? true : false;
 
-                return view('website.register', compact('cHash', 'cSelectPlace', 'cSelectBusiness', 'oPlaces'));
+                return view('website.register', compact('oQr', 'cHash', 'cSelectPlace', 'cSelectBusiness', 'oPlaces'));
 
             }else
             {
