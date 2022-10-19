@@ -36,10 +36,10 @@ class UserRequest extends FormRequest
 
         return [
             'name' => ['required', 'string', 'max:255'],
-            'code' => ['required', 'string', 'max:100', "in:$cIn"],
             'place' => ['required', 'string', 'max:100'],
             'manager' => ['required', 'string', 'max:100'],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'code' => ['required', 'string', 'max:100', 'unique:users,code', "in:$cIn"],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users,email,'.$this->hidUser.',id,deleted_at,NULL'],
         ];
     }

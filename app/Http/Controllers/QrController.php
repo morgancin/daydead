@@ -51,7 +51,9 @@ class QrController extends Controller
         $oPlaces = Place::whereStatus(1)
                         ->get();
 
-        $oUsers = User::where('role', 'user')->get();
+        //$oUsers = User::where('role', 'user')->get();
+        $oUsers = User::where('role', 'user')
+                        ->doesntHave('qrs')->get();
 
 		return view('qrs.form', compact('oQr', 'oUsers', 'oPlaces'));
     }
