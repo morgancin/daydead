@@ -71,7 +71,7 @@ body {color: black;}
 		}
 .select2-dropdown {
    /* background-color: #701a75 !important; */
-    border: 5px solid white !important;
+    border: 5px solid  !important;
     border-radius: 10px;
     box-sizing: border-box;
     display: block;
