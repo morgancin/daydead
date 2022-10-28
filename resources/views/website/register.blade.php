@@ -11,7 +11,7 @@
      <title>Alcis Corp</title>
     </head>
       <body class="bg-fixed overflow-auto" style="background-image:url({{ asset('imagenes/fondo_petalos.png') }})">
-        <img class="justify-start  w-auto" src="{{ asset('imagenes/Papel_picado.png') }}" alt="">
+        <img class="justify-start  w-auto" src="{{ asset('imagenes/LOGO11.png') }}" alt="">
           <div class="h-15 flex">
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/izquierdo.png') }}" alt="">
             <img class="object-contain  h-10  w-full" src="{{ asset('imagenes/derecho.png') }}" alt="">
