@@ -137,7 +137,13 @@
                             </div>
                         </div>
                         <!-- Fin de la tabla -->
+
                         <!-- -->
+                        @if($oUsers->count() > 0)
+						    {{ $oUsers->links('layouts.pagination') }}
+						@endif
+
+                        {{--
                         <nav aria-label="Page navigation example">
                             <ul class="inline-flex items-center -space-x-px">
                               <li>
@@ -168,9 +174,9 @@
                                 </a>
                               </li>
                             </ul>
-                          </nav>
+                        </nav>
+                        --}}
                         <!-- -->
-
                     </div>
                 </div>
             </div>
